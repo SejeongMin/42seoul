@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: semin <semin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 16:58:00 by semin             #+#    #+#             */
-/*   Updated: 2021/09/13 20:13:03 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/14 19:48:07 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_coo
 {
 	int	x;
 	int	y;
+	int	item;
 }				t_coo;
 
 typedef struct	s_params
@@ -50,6 +51,10 @@ typedef struct	s_params
 	t_image *object;
 	t_coo	*coo;
 	char	**map;
+	int		C;
+	int		P;
+	int		E;
+	//방향 나타내는 변수 추가
 }				t_params;
 
 # define KEY_W		13
