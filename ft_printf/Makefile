@@ -5,27 +5,31 @@
 #                                                     +:+ +:+         +:+      #
 #    By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/08/09 21:17:47 by semin             #+#    #+#              #
-#    Updated: 2021/09/16 01:46:59 by semin            ###   ########.fr        #
+#    Created: 2021/06/20 18:25:58 by semin             #+#    #+#              #
+#    Updated: 2021/06/26 16:23:59 by semin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC=cc
-NAME=so_long
-SRC=main.c util.c key_event.c
-OBJ=$(SRC:.c=.o)
-INC=/usr/local/include/
-LIB=/usr/local/lib/
-CFLAGS=-lmlx -framework OpenGL -framework AppKit
+NAME = libftprintf.a
 
-all:
-	gcc -g -fsanitize=address -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGl -framework Appkit -o so_long ../get_next_line/*.o $(SRC) ../libft/libft.a ../ft_printf/libftprintf.a
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-clean:
+SRC = ft_printf.c parsing.c print_int.c print_str.c print_hex.c util.c
+
+OBJ = $(SRC:.c=.o)
+
+all : $(NAME)
+
+$(NAME) : $(OBJ)
+	ar crs $@ $^
+
+clean :
+	rm -f $(OBJ)
+
+fclean : clean
 	rm -f $(NAME)
 
-fclean: clean
-
-re: fclean all
+re : fclean all
 
 .PHONY: all clean fclean re

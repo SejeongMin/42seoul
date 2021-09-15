@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:40:09 by semin             #+#    #+#             */
-/*   Updated: 2021/09/15 01:55:01 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/16 01:50:21 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ t_image	*save_image(t_ptrs *ptrs)
 	object[2].image = mlx_xpm_file_to_image(ptrs->mlx_ptr, "../img/right.xpm", &object[2].width, &object[2].height); //사람오른쪽
 	object[3].image = mlx_xpm_file_to_image(ptrs->mlx_ptr, "../img/left.xpm", &object[3].width, &object[3].height); //사람왼쪽
 	object[4].image = mlx_xpm_file_to_image(ptrs->mlx_ptr, "../img/backward.xpm", &object[4].width, &object[4].height); //사람위
-	object[5].image = mlx_xpm_file_to_image(ptrs->mlx_ptr, "../img/front.xpm", &object[5].width, &object[5].height); //사람아래
+	object[5].image = mlx_xpm_file_to_image(ptrs->mlx_ptr, "../img/forward.xpm", &object[5].width, &object[5].height); //사람아래
 	object[6].image = mlx_xpm_file_to_image(ptrs->mlx_ptr, "../img/dead.xpm", &object[6].width, &object[6].height); //먹는거
 	object[7].image = mlx_xpm_file_to_image(ptrs->mlx_ptr, "../img/door.xpm", &object[7].width, &object[7].height); //출구
 	//object[7].image = mlx_png_file_to_image(ptrs->mlx_ptr, "../img/blue.png", &object[7].width, &object[7].height); //적
@@ -185,29 +185,31 @@ void	draw_initial_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object)
 	}
 }
 
-void	draw_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object)
+void	draw_map(char **map, t_params *params)
 {
 	int	i;
 	int	j;
+	t_ptrs	*ptrs;
 
+	ptrs = params->ptrs;
 	i = 0;
 	while (map[i])
 	{
 		j = 0;
 		while (map[i][j])
 		{
-			mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, object[0].image, j * 100, i * 100);
+			mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, params->object[0].image, j * 100, i * 100);
 			if (map[i][j] == '1')
-				mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, object[1].image, j * 100, i * 100);
-			if (map[i][j] == 'C' && coo->item == 0)
-				mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, object[6].image, j * 100, i * 100);
+				mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, params->object[1].image, j * 100, i * 100);
+			if (map[i][j] == 'C' && params->coo->item == 0)
+				mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, params->object[6].image, j * 100, i * 100);
 			if (map[i][j] == 'E')
-				mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, object[7].image, j * 100, i * 100);
+				mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, params->object[7].image, j * 100, i * 100);
 			j++;
 		}
 		i++;
 	}
-	draw_character(ptrs, coo, object[2]);
+	draw_character(ptrs, params->coo, params->object[params->key]);
 }
 
 t_params	*params_init(t_ptrs *ptrs, t_image *object, t_coo *coo)
@@ -219,10 +221,11 @@ t_params	*params_init(t_ptrs *ptrs, t_image *object, t_coo *coo)
 	params->object = object;
 	params->coo = coo;
 	params->coo->item = 0;
-	// params->map = map;
 	params->C = 0;
 	params->P = 0;
 	params->E = 0;
+	params->key = 2;
+	params->move = 0;
 	return (params);
 }
 

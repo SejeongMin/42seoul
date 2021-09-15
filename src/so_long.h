@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: semin <semin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 16:58:00 by semin             #+#    #+#             */
-/*   Updated: 2021/09/14 19:48:07 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/16 01:45:48 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
+# include "../ft_printf/ft_printf.h"
 # include "mlx.h"
 
 int		is_valid_extension(char *filename);
@@ -54,7 +55,8 @@ typedef struct	s_params
 	int		C;
 	int		P;
 	int		E;
-	//방향 나타내는 변수 추가
+	int		key;
+	int		move;
 }				t_params;
 
 # define KEY_W		13
@@ -67,6 +69,6 @@ typedef struct	s_params
 
 int	input_key(int keycode, t_params *params);
 void	draw_initial_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object);
-void	draw_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object);
+void	draw_map(char **map, t_params *params);
 
 #endif
