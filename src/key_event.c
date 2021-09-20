@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:46:36 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 01:35:50 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 01:48:35 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	input_key(int keycode, t_params *params)
 	if (keycode == KEY_W)
 		key_w(params);
 	if (keycode == KEY_A)
-		key_a(params);	
+		key_a(params);
 	if (keycode == KEY_S)
 		key_s(params);
 	if (keycode == KEY_D)

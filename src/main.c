@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:40:09 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 01:38:43 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 01:51:58 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_image	*save_image(t_ptrs *ptrs)
 {
 	t_image	*object;
 
-	object = (t_image*)malloc(sizeof(t_image) * 8);
+	object = (t_image *)malloc(sizeof(t_image) * 8);
 	object[0].image = xpm_handle(ptrs, &object[0], "../img/floor.xpm");
 	object[1].image = xpm_handle(ptrs, &object[1], "../img/caution.xpm");
 	object[2].image = xpm_handle(ptrs, &object[2], "../img/right.xpm");
@@ -37,7 +37,6 @@ t_image	*save_image(t_ptrs *ptrs)
 	object[7].image = xpm_handle(ptrs, &object[7], "../img/exit.xpm");
 	return (object);
 }
-
 
 void	draw_initial_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object)
 {
@@ -71,8 +70,8 @@ void	draw_initial_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object)
 
 void	draw_map(char **map, t_params *params)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	t_ptrs	*ptrs;
 
 	ptrs = params->ptrs;
