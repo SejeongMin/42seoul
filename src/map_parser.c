@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 16:16:57 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 01:42:00 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 01:56:07 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	count_line(char *filename)
 	int		fd;
 	int		ret;
 
-	line = (char**)malloc(sizeof(char*));
+	line = (char **)malloc(sizeof(char *));
 	fd = open(filename, O_RDONLY);
 	ret = 0;
 	while (get_next_line(fd, line) > 0)
@@ -39,7 +39,7 @@ int	count_width(char *filename)
 	int		idx;
 	int		fd;
 
-	line = (char**)malloc(sizeof(char*));
+	line = (char **)malloc(sizeof(char *));
 	idx = 0;
 	fd = open(filename, O_RDONLY);
 	prev_width = 0;
@@ -76,8 +76,8 @@ static int	find_chr(const char *s, int c)
 
 static void	valid_check(char **map, t_params *params, int idx, int lines)
 {
-	int	map_width;
-	int	ret;
+	int		map_width;
+	int		ret;
 	char	*s;
 
 	s = map[idx];
@@ -112,10 +112,10 @@ char	**map_parser(char *filename, t_params *params)
 	map_width = count_width(filename);
 	lines = count_line(filename);
 	fd = open(filename, O_RDONLY);
-	ret = (char**)malloc(sizeof(char*) * (lines + 1));
+	ret = (char **)malloc(sizeof(char *) * (lines + 1));
 	while (idx < lines)
 	{
-		ret[idx] = (char*)malloc(sizeof(char) * (map_width + 1));
+		ret[idx] = (char *)malloc(sizeof(char) * (map_width + 1));
 		get_next_line(fd, &ret[idx]);
 		valid_check(ret, params, idx, lines);
 		idx++;

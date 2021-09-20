@@ -6,13 +6,13 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:40:22 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 01:01:54 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 01:56:39 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int ft_strcmp(const char *s1, const char *s2)
+static int	ft_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 || *s2)
 	{
@@ -64,7 +64,7 @@ t_params	*params_init(t_ptrs *ptrs, t_image *object, t_coo *coo)
 {
 	t_params	*params;
 
-	params = (t_params*)malloc(sizeof(t_params));
+	params = (t_params *)malloc(sizeof(t_params));
 	params->ptrs = ptrs;
 	params->object = object;
 	params->coo = coo;
