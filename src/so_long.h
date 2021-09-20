@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 16:58:00 by semin             #+#    #+#             */
-/*   Updated: 2021/09/16 01:45:48 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 01:35:38 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include "../ft_printf/ft_printf.h"
 # include "mlx.h"
 
-int		is_valid_extension(char *filename);
-
 typedef struct 	s_image{
 	void	*image;
 	int		width;
@@ -35,8 +33,8 @@ typedef struct 	s_image{
 }				t_image;
 
 typedef struct	s_ptrs{
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	void	*win;
 }				t_ptrs;
 
 typedef struct	s_coo
@@ -59,6 +57,13 @@ typedef struct	s_params
 	int		move;
 }				t_params;
 
+int		is_valid_extension(char *filename);
+
+int	count_line(char *filename);
+int	count_width(char *filename);
+char	**map_parser(char *filename, t_params *params);
+void	split_free(char **ret);
+
 # define KEY_W		13
 # define KEY_A		0
 # define KEY_S		1
@@ -70,5 +75,10 @@ typedef struct	s_params
 int	input_key(int keycode, t_params *params);
 void	draw_initial_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object);
 void	draw_map(char **map, t_params *params);
+
+void	put_image(t_ptrs *ptrs, t_image object, int x, int y);
+t_params	*params_init(t_ptrs *ptrs, t_image *object, t_coo *coo);
+void	ft_free(t_params *params, char **map, int errno);
+int		close_win_x(t_params *params);
 
 #endif

@@ -6,12 +6,11 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:40:22 by semin             #+#    #+#             */
-/*   Updated: 2021/09/13 21:53:59 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 01:01:54 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 static int ft_strcmp(const char *s1, const char *s2)
 {
@@ -25,7 +24,7 @@ static int ft_strcmp(const char *s1, const char *s2)
 	return (1);
 }
 
-static void	split_free(char **ret)
+void	split_free(char **ret)
 {
 	int	i;
 
@@ -35,6 +34,7 @@ static void	split_free(char **ret)
 		free(ret[i]);
 		i++;
 	}
+	free(ret);
 }
 
 int	is_valid_extension(char *filename)
@@ -52,6 +52,27 @@ int	is_valid_extension(char *filename)
 		return (0);
 	}
 	split_free(ret);
-	free(ret);
 	return (1);
+}
+
+void	put_image(t_ptrs *ptrs, t_image object, int x, int y)
+{
+	mlx_put_image_to_window(ptrs->mlx, ptrs->win, object.image, x, y);
+}
+
+t_params	*params_init(t_ptrs *ptrs, t_image *object, t_coo *coo)
+{
+	t_params	*params;
+
+	params = (t_params*)malloc(sizeof(t_params));
+	params->ptrs = ptrs;
+	params->object = object;
+	params->coo = coo;
+	params->coo->item = 0;
+	params->C = 0;
+	params->P = 0;
+	params->E = 0;
+	params->key = 2;
+	params->move = 0;
+	return (params);
 }

@@ -6,20 +6,21 @@
 #    By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/09 21:17:47 by semin             #+#    #+#              #
-#    Updated: 2021/09/16 01:46:59 by semin            ###   ########.fr        #
+#    Updated: 2021/09/21 01:17:46 by semin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC=cc
+CC=gcc
 NAME=so_long
-SRC=main.c util.c key_event.c
+SRC=main.c util.c key_event.c map_parser.c free.c
 OBJ=$(SRC:.c=.o)
-INC=/usr/local/include/
-LIB=/usr/local/lib/
+INC=-I/usr/local/include/
+LIB=-L/usr/local/lib/
+EXT=../get_next_line/*.o ../libft/libft.a ../ft_printf/libftprintf.a
 CFLAGS=-lmlx -framework OpenGL -framework AppKit
 
 all:
-	gcc -g -fsanitize=address -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGl -framework Appkit -o so_long ../get_next_line/*.o $(SRC) ../libft/libft.a ../ft_printf/libftprintf.a
+	$(CC) $(INC) $(LIB) $(CFLAGS) $(SRC) $(EXT) -o $(NAME)
 
 clean:
 	rm -f $(NAME)
