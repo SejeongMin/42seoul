@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:40:09 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 02:14:05 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 02:27:57 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	main(int ac, char **av)
 		return (1);
 	ptrs.mlx = mlx_init();
 	ptrs.win = mlx_new_window(ptrs.mlx, count_width(av[1]) * 100,
-							count_line(av[1]) * 100, "so_long");
+			count_line(av[1]) * 100, "so_long");
 	object = save_image(&ptrs);
 	params = params_init(&ptrs, object, &coo);
 	map = map_parser(av[1], params);

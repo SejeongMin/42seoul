@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 16:58:00 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 02:24:29 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 02:31:58 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 # define KEY_PRESS_EVENT	2
 
-typedef struct	s_image{
+typedef struct s_image{
 	void	*image;
 	int		width;
 	int		height;
@@ -38,21 +38,21 @@ typedef struct	s_image{
 	int		bpp;
 	int		size_line;
 	int		endian;
-}				t_image;
+}	t_image;
 
-typedef struct	s_ptrs{
+typedef struct s_ptrs{
 	void	*mlx;
 	void	*win;
-}				t_ptrs;
+}	t_ptrs;
 
-typedef struct	s_coo
+typedef struct s_coo
 {
 	int	x;
 	int	y;
 	int	item;
-}				t_coo;
+}	t_coo;
 
-typedef struct	s_params
+typedef struct s_params
 {
 	t_ptrs	*ptrs;
 	t_image	*object;
@@ -63,7 +63,7 @@ typedef struct	s_params
 	int		E;
 	int		key;
 	int		move;
-}				t_params;
+}	t_params;
 
 int			is_valid_extension(char *filename);
 
@@ -73,7 +73,8 @@ char		**map_parser(char *filename, t_params *params);
 void		split_free(char **ret);
 
 int			input_key(int keycode, t_params *params);
-void		draw_initial_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object);
+void		draw_initial_map(char **map, t_ptrs *ptrs,
+				t_coo *coo, t_image *object);
 void		draw_map(char **map, t_params *params);
 
 void		put_image(t_ptrs *ptrs, t_image object, int x, int y);
