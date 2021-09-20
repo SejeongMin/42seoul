@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 16:16:57 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 01:56:07 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 02:24:33 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,14 @@ int	count_width(char *filename)
 	fd = open(filename, O_RDONLY);
 	prev_width = 0;
 	map_width = 0;
-	while ((map_width = get_next_line(fd, line)) > 0)
+	map_width = get_next_line(fd, line);
+	while (map_width > 0)
 	{
 		if (idx != 0 && map_width != prev_width)
-		{
-			free(line);
-			ft_printf("Error\nMap must be rectangular.");
-			exit(1);
-		}
+			map_error(line);
 		idx++;
 		prev_width = map_width;
+		map_width = get_next_line(fd, line);
 	}
 	close(fd);
 	free(line);

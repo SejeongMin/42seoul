@@ -6,11 +6,24 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 00:52:41 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 01:38:13 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 02:24:22 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	set_coo(t_coo *coo, int i, int j)
+{
+	coo->x = j * 100;
+	coo->y = i * 100;
+}
+
+void	map_error(char **line)
+{
+	free(line);
+	ft_printf("Error\nMap must be rectangular.");
+	exit(1);
+}
 
 int	close_win_x(t_params *params)
 {

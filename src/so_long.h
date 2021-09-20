@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 16:58:00 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 01:35:38 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 02:24:29 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,15 @@
 # include "../ft_printf/ft_printf.h"
 # include "mlx.h"
 
-typedef struct 	s_image{
+# define KEY_W		13
+# define KEY_A		0
+# define KEY_S		1
+# define KEY_D		2
+# define KEY_ESC	53
+
+# define KEY_PRESS_EVENT	2
+
+typedef struct	s_image{
 	void	*image;
 	int		width;
 	int		height;
@@ -47,7 +55,7 @@ typedef struct	s_coo
 typedef struct	s_params
 {
 	t_ptrs	*ptrs;
-	t_image *object;
+	t_image	*object;
 	t_coo	*coo;
 	char	**map;
 	int		C;
@@ -57,28 +65,22 @@ typedef struct	s_params
 	int		move;
 }				t_params;
 
-int		is_valid_extension(char *filename);
+int			is_valid_extension(char *filename);
 
-int	count_line(char *filename);
-int	count_width(char *filename);
-char	**map_parser(char *filename, t_params *params);
-void	split_free(char **ret);
+int			count_line(char *filename);
+int			count_width(char *filename);
+char		**map_parser(char *filename, t_params *params);
+void		split_free(char **ret);
 
-# define KEY_W		13
-# define KEY_A		0
-# define KEY_S		1
-# define KEY_D		2
-# define KEY_ESC	53
+int			input_key(int keycode, t_params *params);
+void		draw_initial_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object);
+void		draw_map(char **map, t_params *params);
 
-# define KEY_PRESS_EVENT	2
-
-int	input_key(int keycode, t_params *params);
-void	draw_initial_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object);
-void	draw_map(char **map, t_params *params);
-
-void	put_image(t_ptrs *ptrs, t_image object, int x, int y);
+void		put_image(t_ptrs *ptrs, t_image object, int x, int y);
 t_params	*params_init(t_ptrs *ptrs, t_image *object, t_coo *coo);
-void	ft_free(t_params *params, char **map, int errno);
-int		close_win_x(t_params *params);
+void		ft_free(t_params *params, char **map, int errno);
+int			close_win_x(t_params *params);
+void		set_coo(t_coo *coo, int i, int j);
+void		map_error(char **line);
 
 #endif

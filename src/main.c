@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:40:09 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 01:58:48 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 02:14:05 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ void	draw_initial_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object)
 				put_image(ptrs, object[1], j * 100, i * 100);
 			if (map[i][j] == 'P')
 			{
-				coo->x = j * 100;
-				coo->y = i * 100;
+				set_coo(coo, i, j);
 				put_image(ptrs, object[2], coo->x, coo->y);
 			}
 			if (map[i][j] == 'C')
@@ -73,7 +72,9 @@ void	draw_map(char **map, t_params *params)
 	int		i;
 	int		j;
 	t_ptrs	*ptrs;
+	t_coo	*coo;
 
+	coo = params->coo;
 	ptrs = params->ptrs;
 	i = 0;
 	while (map[i])
@@ -92,7 +93,7 @@ void	draw_map(char **map, t_params *params)
 		}
 		i++;
 	}
-	put_image(ptrs, params->object[params->key], params->coo->x, params->coo->y);
+	put_image(ptrs, params->object[params->key], coo->x, coo->y);
 }
 
 int	main(int ac, char **av)
@@ -108,7 +109,8 @@ int	main(int ac, char **av)
 	if (is_valid_extension(av[1]) == 0)
 		return (1);
 	ptrs.mlx = mlx_init();
-	ptrs.win = mlx_new_window(ptrs.mlx, count_width(av[1]) * 100, count_line(av[1]) * 100, "so_long");
+	ptrs.win = mlx_new_window(ptrs.mlx, count_width(av[1]) * 100,
+							count_line(av[1]) * 100, "so_long");
 	object = save_image(&ptrs);
 	params = params_init(&ptrs, object, &coo);
 	map = map_parser(av[1], params);
