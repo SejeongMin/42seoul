@@ -6,13 +6,13 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 15:57:26 by semin             #+#    #+#             */
-/*   Updated: 2021/06/26 16:40:14 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 21:08:56 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char		*ft_find(char *str, char c)
+char	*ft_find(char *str, char c)
 {
 	char	*tmp;
 
@@ -72,7 +72,7 @@ static int	start_print(va_list ap, t_data *data)
 	return (ret);
 }
 
-int			ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		ret;
@@ -88,7 +88,7 @@ int			ft_printf(const char *format, ...)
 		{
 			init_data(&data);
 			i++;
-			i += ft_parsing((char*)(&format[i]), ap, &data);
+			i += ft_parsing((char *)(&format[i]), ap, &data);
 			ret += start_print(ap, &data);
 		}
 		else

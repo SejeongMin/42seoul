@@ -6,13 +6,13 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 16:28:02 by semin             #+#    #+#             */
-/*   Updated: 2021/09/14 01:21:59 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 21:13:06 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		wdcount(char const *s, char c)
+static int	wdcount(char const *s, char c)
 {
 	int	wd;
 
@@ -33,7 +33,7 @@ static int		wdcount(char const *s, char c)
 	return (wd);
 }
 
-static char		**malloc_err(char **ret)
+static char	**malloc_err(char **ret)
 {
 	int	i;
 
@@ -47,7 +47,7 @@ static char		**malloc_err(char **ret)
 	return (0);
 }
 
-static void		my_strlcpy(char *dst, char *src, int size)
+static void	my_strlcpy(char *dst, char *src, int size)
 {
 	int		i;
 
@@ -62,7 +62,7 @@ static void		my_strlcpy(char *dst, char *src, int size)
 	*dst = 0;
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**ret;
 	char	*tmp;
@@ -70,8 +70,7 @@ char			**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	if (!(ret = (char **)malloc(sizeof(char *) * (wdcount(s, c) + 1))))
-		return (NULL);
+	ret = (char **)malloc(sizeof(char *) * (wdcount(s, c) + 1));
 	i = 0;
 	while (*s)
 	{
@@ -80,8 +79,7 @@ char			**ft_split(char const *s, char c)
 			tmp = (char *)s;
 			while (*s != c && *s)
 				s++;
-			if (!(ret[i] = (char *)malloc(s - tmp + 1)))
-				return (malloc_err(ret));
+			ret[i] = (char *)malloc(s - tmp + 1);
 			my_strlcpy(ret[i++], tmp, s - tmp + 1);
 		}
 		if (*s)

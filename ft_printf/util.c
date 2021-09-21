@@ -6,13 +6,13 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/26 16:27:28 by semin             #+#    #+#             */
-/*   Updated: 2021/06/26 16:28:10 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 21:11:52 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_toupper(int c)
+int	ft_toupper(int c)
 {
 	if ('a' <= c && c <= 'z')
 		c = c - ('a' - 'A');
@@ -33,7 +33,7 @@ void	ft_putnbr_base(unsigned long long num, t_data *data)
 	}
 }
 
-int		ft_unumlen(unsigned long long num)
+int	ft_unumlen(unsigned long long num)
 {
 	int	ret;
 
@@ -48,7 +48,7 @@ int		ft_unumlen(unsigned long long num)
 	return (ret);
 }
 
-int		ft_xnumlen(unsigned long long num)
+int	ft_xnumlen(unsigned long long num)
 {
 	int	ret;
 

@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 21:46:29 by semin             #+#    #+#             */
-/*   Updated: 2021/06/26 14:52:54 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 21:11:36 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_strlen(char *str)
 	return (ret);
 }
 
-void		print_char(char c, t_data *data, int *ret)
+void	print_char(char c, t_data *data, int *ret)
 {
 	int	zero_len;
 	int	space_len;
@@ -77,7 +77,7 @@ static void	print_str2(char *str, t_data *data, int zero_len, int space_len)
 	}
 }
 
-void		print_str(char *str, t_data *data, int *ret)
+void	print_str(char *str, t_data *data, int *ret)
 {
 	int	zero_len;
 	int	space_len;

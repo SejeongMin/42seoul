@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 16:28:13 by semin             #+#    #+#             */
-/*   Updated: 2021/09/14 01:24:10 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 21:07:31 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static int	to_line(char **repo, char **line)
 
 	if (*repo == NULL)
 	{
-		if (!(*line = ft_strdup("")))
-			return (-1);
+		*line = ft_strdup("");
 		return (0);
 	}
 	nl_ptr = ft_strchr(*repo, '\n');
@@ -28,10 +27,8 @@ static int	to_line(char **repo, char **line)
 	if (nl_ptr)
 	{
 		*nl_ptr = '\0';
-		if (!(*line = ft_strdup(tmp_repo)))
-			return (-1);
-		if (!(tmp_repo = ft_strdup(nl_ptr + 1)))
-			return (-1);
+		*line = ft_strdup(tmp_repo);
+		tmp_repo = ft_strdup(nl_ptr + 1);
 		free(*repo);
 		*repo = tmp_repo;
 		return (ft_strlen(*line));
@@ -41,7 +38,7 @@ static int	to_line(char **repo, char **line)
 	return (0);
 }
 
-int			get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*repo;
 	char		*tmp_repo;
@@ -50,18 +47,21 @@ int			get_next_line(int fd, char **line)
 
 	if (fd > 255 || !line || fd < 0)
 		return (-1);
-	while ((ret = read(fd, buf, 10)) != 0)
+	ret = read(fd, buf, 10);
+	while (ret != 0)
 	{
 		if (ret < 0)
 			return (-1);
 		buf[ret] = '\0';
-		tmp_repo = repo ? ft_strjoin(repo, buf) : ft_strdup(buf);
-		if (!tmp_repo)
-			return (-1);
+		if (repo)
+			tmp_repo = ft_strjoin(repo, buf);
+		else
+			tmp_repo = ft_strdup(buf);
 		free(repo);
 		repo = tmp_repo;
 		if (ft_strchr(repo, '\n') != NULL)
 			break ;
+		ret = read(fd, buf, 10);
 	}
 	return (to_line(&repo, line));
 }

@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/26 15:00:50 by semin             #+#    #+#             */
-/*   Updated: 2021/06/26 16:26:14 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 21:11:20 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,12 @@ static int	ft_prec(char *str, va_list ap, t_data *data)
 			ret++;
 		}
 		else
+		{
 			while ('0' <= str[ret] && str[ret] <= '9')
 			{
-				prec = prec * 10 + (str[ret] - '0');
-				ret++;
+				prec = prec * 10 + (str[ret++] - '0');
 			}
+		}
 	}
 	if (prec >= 0)
 		data->prec = prec;
@@ -109,7 +110,7 @@ static int	ft_type(char *str, t_data *data)
 	return (1);
 }
 
-int			ft_parsing(char *str, va_list ap, t_data *data)
+int	ft_parsing(char *str, va_list ap, t_data *data)
 {
 	int		idx;
 

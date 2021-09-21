@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/26 14:46:27 by semin             #+#    #+#             */
-/*   Updated: 2021/06/26 14:51:14 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 21:11:27 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	print_right(long long num, int zero_len, int space_len,
 		ft_putnbr(num);
 }
 
-void		print_int(long long num, t_data *data, int *ret)
+void	print_int(long long num, t_data *data, int *ret)
 {
 	int	zero_len;
 	int	space_len;

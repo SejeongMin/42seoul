@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/26 14:53:03 by semin             #+#    #+#             */
-/*   Updated: 2021/06/26 16:22:44 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 21:09:02 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	printux_right(unsigned long long num, int zero_len,
 	}
 }
 
-void		print_ux(unsigned long long num, t_data *data, int *ret)
+void	print_ux(unsigned long long num, t_data *data, int *ret)
 {
 	int	zero_len;
 	int	space_len;
@@ -85,7 +85,7 @@ void		print_ux(unsigned long long num, t_data *data, int *ret)
 	*ret += space_len + zero_len + num_len;
 }
 
-void		print_p(unsigned long long num, t_data *data, int *ret)
+void	print_p(unsigned long long num, t_data *data, int *ret)
 {
 	int	zero_len;
 	int	space_len;

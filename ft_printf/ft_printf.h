@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/26 15:01:58 by semin             #+#    #+#             */
-/*   Updated: 2021/06/26 16:41:21 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 21:12:21 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define FLAG "-0"
 # define TYPE "cspdiuxX%"
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int			minus;
 	int			zero;
