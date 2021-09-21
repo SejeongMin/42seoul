@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:46:36 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 01:48:35 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 18:01:43 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,12 @@ int	input_key(int keycode, t_params *params)
 	if (keycode == KEY_ESC)
 		ft_free(params, params->map, 0);
 	if (params->map[params->coo->y / 100][params->coo->x / 100] == 'C')
-		params->coo->item = 1;
+	{
+		params->map[params->coo->y / 100][params->coo->x / 100] = '0';
+		params->coo->item++;
+	}
 	if (params->map[params->coo->y / 100][params->coo->x / 100] == 'E'
-		&& params->coo->item == 1)
+		&& params->coo->item == params->C)
 	{
 		ft_printf("Success");
 		ft_free(params, params->map, 0);
