@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 13:03:35 by semin             #+#    #+#             */
-/*   Updated: 2021/09/14 19:19:02 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/21 21:16:20 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-int		ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -84,8 +84,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
-	if (!(s = (char *)malloc(s1_len + s2_len + 1)))
-		return (NULL);
+	s = (char *)malloc(s1_len + s2_len + 1);
 	ft_memcpy(s, s1, s1_len);
 	ft_memcpy(s + s1_len, s2, s2_len);
 	*(s + s1_len + s2_len) = 0;
