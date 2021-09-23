@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 16:16:57 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 02:24:33 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/22 01:29:39 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	**map_parser(char *filename, t_params *params)
 	}
 	ret[idx] = 0;
 	close(fd);
-	if (params->C == 0 || params->P != 1 || params->E == 0)
+	if (params->C == 0 || params->P != 1 || params->E != 1)
 		ft_free(params, ret, 2);
 	return (ret);
 }
