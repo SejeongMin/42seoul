@@ -18,6 +18,11 @@ typedef struct s_stack{
     int top;
 }   t_stack;
 
+typedef struct s_chunk{
+	int	top;
+	int	bottom;
+}	t_chunk;
+
 # include <stdlib.h>
 # include <unistd.h>
 

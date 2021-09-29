@@ -38,7 +38,7 @@ void	init_stack(t_stack *a, t_stack *b, int ac, char **av)
 	{
 		a->stack[idx] = av[ac - 1];
 		idx++;
-		a->top++;		
+		a->top++;
 		ac--;
 	}
 }
