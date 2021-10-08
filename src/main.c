@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 17:40:09 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 23:44:37 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/26 23:10:04 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ void	draw_initial_map(char **map, t_ptrs *ptrs, t_coo *coo, t_image *object)
 			put_image(ptrs, object[0], j * 100, i * 100);
 			if (map[i][j] == '1')
 				put_image(ptrs, object[1], j * 100, i * 100);
-			if (map[i][j] == 'P')
+			else if (map[i][j] == 'P')
 			{
 				set_coo(coo, i, j);
 				put_image(ptrs, object[2], coo->x, coo->y);
 			}
-			if (map[i][j] == 'C')
+			else if (map[i][j] == 'C')
 				put_image(ptrs, object[6], j * 100, i * 100);
-			if (map[i][j] == 'E')
+			else if (map[i][j] == 'E')
 				put_image(ptrs, object[7], j * 100, i * 100);
 			j++;
 		}

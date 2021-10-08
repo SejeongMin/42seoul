@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 00:52:41 by semin             #+#    #+#             */
-/*   Updated: 2021/09/21 02:24:22 by semin            ###   ########.fr       */
+/*   Updated: 2021/09/26 23:20:42 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ void	ft_free(t_params *params, char **map, int errno)
 	if (errno == 2)
 	{
 		ft_printf("Error\nMap must have at least one E, one C, and one P.");
+		exit(1);
+	}
+	if (errno == 3)
+	{
+		ft_printf("Error\nMap has invalid keys.");
 		exit(1);
 	}
 	exit(0);
