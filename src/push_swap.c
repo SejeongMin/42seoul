@@ -3,29 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: semin <semin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/23 15:01:13 by semin             #+#    #+#             */
-/*   Updated: 2021/09/23 16:38:49 by semin            ###   ########.fr       */
+/*   Created: 2021/10/11 20:38:24 by semin             #+#    #+#             */
+/*   Updated: 2021/10/11 20:38:26 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	atoi(char *s)
+int	ft_atoi(char *s)
 {
-	int	ret;
+	long long	ret;
 
 	ret = 0;
 	while (*s)
 	{
-		ret = ret * 10 + (*s - '0');
-		s++;
+		if (*s >= '0' && *s <= '9')
+		{
+			ret = ret * 10 + (*s - '0');
+			s++;
+		}
+		else
+			return (-1);
 	}
-	return (ret);
+	if (ret >= 2147483648 || ret <= -2147483649)
+		return (-1);
+	return ((int)ret);
 }
 
-void	init_stack(t_stack *a, t_stack *b, int ac, char **av)
+int	is_dup(int *stack, int idx)
+{
+	int	i;
+
+	i = 0;
+	while (i < idx)
+	{
+		if (stack[idx] == stack[i])
+			return (-1);
+		i++;
+	}
+	return (1);
+}
+
+int	init_stack(t_stack *a, t_stack *b, int ac, char **av)
 {
 	int	idx;
 
@@ -36,11 +57,22 @@ void	init_stack(t_stack *a, t_stack *b, int ac, char **av)
 	b->top = -1;
 	while (ac > 1)
 	{
-		a->stack[idx] = av[ac - 1];
+		if (ft_atoi(av[ac - 1]) >= 0)
+			a->stack[idx] = ft_atoi(av[ac - 1]);
+		else
+			return (-1);
+		if (is_dup(a->stack, idx) < 0)
+			return (-1);
 		idx++;
-		a->top++;		
+		a->top++;
 		ac--;
 	}
+}
+
+int	error()
+{
+	//ft_printf("Error\n");
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -48,5 +80,8 @@ int	main(int ac, char **av)
 	t_stack	a;
 	t_stack	b;
 
-	init_stack(&a, &b, ac, av);
+	if (ac == 1 || ac == 2)
+		return (1);
+	if (init_stack(&a, &b, ac, av) < 0)
+		return (error());
 }
