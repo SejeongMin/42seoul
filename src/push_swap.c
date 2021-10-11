@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:38:24 by semin             #+#    #+#             */
-/*   Updated: 2021/10/11 20:38:26 by semin            ###   ########.fr       */
+/*   Updated: 2021/10/11 20:41:02 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	init_stack(t_stack *a, t_stack *b, int ac, char **av)
 
 int	error()
 {
-	//ft_printf("Error\n");
+	write(1, "Error\n", 6);
 	return (0);
 }
 
