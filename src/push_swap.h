@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: semin <semin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:13:51 by semin             #+#    #+#             */
-/*   Updated: 2021/09/23 15:46:53 by semin            ###   ########.fr       */
+/*   Updated: 2021/10/27 11:22:44 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ typedef struct s_chunk{
 
 # include <stdlib.h>
 # include <unistd.h>
+
+void	ft_swap(t_stack *s);
+void	ft_push(t_stack *s1, t_stack *s2);
+void	ft_rotate(t_stack *s);
+void	ft_rev_rotate(t_stack *s);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:38:24 by semin             #+#    #+#             */
-/*   Updated: 2021/10/11 20:41:02 by semin            ###   ########.fr       */
+/*   Updated: 2021/10/27 11:55:03 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,48 @@ int	init_stack(t_stack *a, t_stack *b, int ac, char **av)
 		a->top++;
 		ac--;
 	}
+	return (1);
 }
 
 int	error()
 {
 	write(1, "Error\n", 6);
 	return (0);
+}
+
+#include <stdio.h>
+
+void A_to_B(t_stack *a, t_stack *b, int top)
+{
+	int	count_ra;
+	int	count_pb;
+	int	pivot;
+
+	if (top == 0)
+		return ;
+	pivot = a->stack[a->top];
+	count_ra = 0;
+	count_pb = 0;
+	while (top >= 0)
+	{
+		if (a->stack[top] > pivot)
+		{
+			ft_rotate(a);
+			count_ra++;
+		}
+		else
+		{
+			ft_push(b, a);
+			count_pb++;
+		}
+		top--;
+	}
+	int t = b->top;
+	while (t >= 0){
+		printf("%d", b->stack[t]);
+		t--;
+	}
+	// 두 개로 나누는것까진 구현함
 }
 
 int	main(int ac, char **av)
@@ -84,4 +120,5 @@ int	main(int ac, char **av)
 		return (1);
 	if (init_stack(&a, &b, ac, av) < 0)
 		return (error());
+	A_to_B(&a, &b, a.top);
 }
