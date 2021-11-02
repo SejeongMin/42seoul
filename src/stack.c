@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:38:13 by semin             #+#    #+#             */
-/*   Updated: 2021/11/01 18:01:15 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/02 19:47:19 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	ft_swap(t_stack *s)
 
 void	ft_push(t_stack *s1, t_stack *s2)
 {
-	s1->top++;
+	(s1->top)++;
 	s1->stack[s1->top] = s2->stack[s2->top];
-	s2->top--;
+	(s2->top)--;
 }
 
 void	ft_rotate(t_stack *s)

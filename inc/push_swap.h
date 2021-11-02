@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:13:51 by semin             #+#    #+#             */
-/*   Updated: 2021/11/01 18:25:01 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/02 20:52:08 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	A_to_B(t_stack *a, t_stack *b, int range);
 
 int	is_sorted_a(t_stack *a, int range);
 int	is_sorted_b(t_stack *b, int range);
+
+void printing(t_stack *a, t_stack *b);
 
 #endif
 
