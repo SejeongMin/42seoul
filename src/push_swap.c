@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:38:24 by semin             #+#    #+#             */
-/*   Updated: 2021/11/02 23:51:50 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/03 14:47:56 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,15 @@
 int	ft_atoi(char *s)
 {
 	long long	ret;
+	int	sign;
 
 	ret = 0;
+	sign = 1;
+	if (s[0] == '-')
+	{
+		sign = -1;
+		s++;
+	}
 	while (*s)
 	{
 		if (*s >= '0' && *s <= '9')
@@ -25,11 +32,11 @@ int	ft_atoi(char *s)
 			s++;
 		}
 		else
-			return (-1);
+			ft_error();
 	}
 	if (ret >= 2147483648 || ret <= -2147483649)
-		return (-1);
-	return ((int)ret);
+		ft_error();
+	return ((int)ret * sign);
 }
 
 int	is_dup(int *stack, int idx)
@@ -57,12 +64,9 @@ int	init_stack(t_stack *a, t_stack *b, int ac, char **av)
 	b->top = -1;
 	while (ac > 1)
 	{
-		if (ft_atoi(av[ac - 1]) >= 0)
-			a->stack[idx] = ft_atoi(av[ac - 1]);
-		else
-			return (-1);
+		a->stack[idx] = ft_atoi(av[ac - 1]);
 		if (is_dup(a->stack, idx) < 0)
-			return (-1);
+			ft_error();
 		idx++;
 		a->top++;
 		ac--;
@@ -70,11 +74,11 @@ int	init_stack(t_stack *a, t_stack *b, int ac, char **av)
 	return (1);
 }
 
-int	error()
+int	ft_error()
 {
 	write(1, "Error\n", 6);
 	//malloc
-	return (0);
+	exit(1);
 }
 
 #include <stdio.h>
@@ -102,7 +106,7 @@ int	main(int ac, char **av)
 	if (ac == 1 || ac == 2)
 		return (1);
 	if (init_stack(&a, &b, ac, av) < 0)
-		return (error());
+		ft_error();
 	A_to_B(&a, &b, ac - 1);
 	// printing(&a, &b);
 }

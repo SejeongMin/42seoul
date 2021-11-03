@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:16:20 by semin             #+#    #+#             */
-/*   Updated: 2021/11/02 23:51:08 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/03 15:34:15 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ int	choose_pivot(t_stack *stack, int range)
 		top--;
 	}
 	return ((min + max) / 2);
+
+	// int	chunk[range];
+	// int	top;
+	// int	i;
+	// int	j;
+	// int	tmp;
+
+	// top = stack->top;
+	// while (--range >= 0)
+	// {
+	// 	chunk[range] = stack->stack[top];
+	// 	top--;
+	// }
+	// i = 0;
 }
 
 int	a_division(t_stack *a, t_stack *b, int range)
@@ -138,7 +152,12 @@ void	A_to_B(t_stack *a, t_stack *b, int range)
 
 	if (is_sorted_a(a, range))
 		return ;
-	if (range <= 3)
+	if (a->top == 2)
+	{
+		ft_three_argument(a);
+		return ;
+	}
+	else if (range <= 3)
 	{
 		ft_small_range(a, range);
 		return ;
