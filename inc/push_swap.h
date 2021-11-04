@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:13:51 by semin             #+#    #+#             */
-/*   Updated: 2021/11/03 15:01:01 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/04 17:53:14 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define PUSH_SWAP_H
 
 typedef struct s_stack{
-	int *stack;
-	int top;
+	int 	*stack;
+	int 	top;
+	char	stack_name;
 }   t_stack;
 
 typedef struct s_chunk{
@@ -36,12 +37,17 @@ int		ft_error();
 void	ft_small_range(t_stack *stack, int range);
 void	ft_three_argument(t_stack *stack);
 
+void	a_five_arg(t_stack *a, t_stack *b, int range);
+void	b_five_arg(t_stack *a, t_stack *b, int range);
+
 void	A_to_B(t_stack *a, t_stack *b, int range);
 
 int		is_sorted_a(t_stack *a, int range);
 int		is_sorted_b(t_stack *b, int range);
 
 void 	printing(t_stack *a, t_stack *b);
+
+void	repeat_push(t_stack *s1, t_stack *s2, int range);
 
 #endif
 

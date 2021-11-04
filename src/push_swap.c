@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:38:24 by semin             #+#    #+#             */
-/*   Updated: 2021/11/03 14:47:56 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/04 17:51:29 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	init_stack(t_stack *a, t_stack *b, int ac, char **av)
 	idx = 0;
 	a->stack = (int *)malloc(sizeof(int) * (ac - 1));
 	b->stack = (int *)malloc(sizeof(int) * (ac - 1));
+	a->stack_name = 'a';
+	b->stack_name = 'b';
 	a->top = -1;
 	b->top = -1;
 	while (ac > 1)
@@ -77,7 +79,7 @@ int	init_stack(t_stack *a, t_stack *b, int ac, char **av)
 int	ft_error()
 {
 	write(1, "Error\n", 6);
-	//malloc
+	//free
 	exit(1);
 }
 
