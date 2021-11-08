@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:38:13 by semin             #+#    #+#             */
-/*   Updated: 2021/11/04 17:59:08 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/09 02:29:01 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,25 @@ void	ft_rev_rotate(t_stack *s)
 	write(1, "rr", 2);
 	write(1, &s->stack_name, 1);
 	write(1, "\n", 1);
+}
+
+int	wdcount(char *s)
+{
+	int	wd;
+
+	wd = 0;
+	while (*s && *s == ' ')
+		s++;
+	while (*s)
+	{
+		if (*s != ' ')
+		{
+			wd++;
+			while (*s != ' ' && *s)
+				s++;
+		}
+		if (*s)
+			s++;
+	}
+	return (wd);
 }

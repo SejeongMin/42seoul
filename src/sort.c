@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:16:20 by semin             #+#    #+#             */
-/*   Updated: 2021/11/04 17:56:18 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/09 02:51:11 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ int	a_division(t_stack *a, t_stack *b, int range)
 	int	pivot;
 	int	count_rotate;
 	int	count_push;
+	int	tmp_range;
 
 	pivot = choose_pivot(a, range);
 	count_rotate = 0;
 	count_push = 0;
-	while (range--)
+	tmp_range = range;
+	while (tmp_range-- && count_push < (range / 2))
 	{
 		if (a->stack[a->top] > pivot)
 		{
@@ -69,7 +71,7 @@ int	a_division(t_stack *a, t_stack *b, int range)
 			count_push++;
 		}
 	}
-	while (a->top != (count_rotate - 1) && count_rotate--)
+	while (a->top != (range - count_push - 1) && count_rotate--)
 		ft_rev_rotate(a);
 	return (count_push);
 }
@@ -79,11 +81,13 @@ int	b_division(t_stack *a, t_stack *b, int range)
 	int	pivot;
 	int	count_rotate;
 	int	count_push;
+	int	tmp_range;
 
 	pivot = choose_pivot(b, range);
 	count_rotate = 0;
 	count_push = 0;
-	while (range--)
+	tmp_range = range;
+	while (tmp_range-- && count_push <= ((range / 2) + (range % 2)))
 	{
 		if (b->stack[b->top] < pivot)
 		{
@@ -96,7 +100,7 @@ int	b_division(t_stack *a, t_stack *b, int range)
 			count_push++;
 		}
 	}
-	while (b->top != (count_rotate - 1) && count_rotate--)
+	while (b->top != (range - count_push - 1) && count_rotate--)
 		ft_rev_rotate(b);
 	return (count_push);
 }

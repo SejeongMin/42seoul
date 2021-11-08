@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:13:04 by semin             #+#    #+#             */
-/*   Updated: 2021/11/04 18:02:31 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/05 02:34:30 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,11 @@ static void    ft_size3(t_stack *stack)
 	}
 }
 
-static void    ft_size2(t_stack *s)
+void    ft_size2(t_stack *s)
 {
 	if (s->stack[s->top - 1] < s->stack[s->top])
 		ft_swap(s);
 }
-
-#include <stdio.h>
 
 void	ft_small_range(t_stack *stack, int range)
 {
