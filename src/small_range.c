@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:13:04 by semin             #+#    #+#             */
-/*   Updated: 2021/11/13 21:12:58 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/13 23:09:47 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,12 @@ void	ft_three_argument(t_stack *stack)
 		ft_rotate(stack);
 		ft_swap(stack);
 	}
+}
+
+int	ft_error(t_stack *a, t_stack *b)
+{
+	write(1, "Error\n", 6);
+	free(a->stack);
+	free(b->stack);
+	exit(1);
 }

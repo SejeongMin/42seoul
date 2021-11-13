@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:13:51 by semin             #+#    #+#             */
-/*   Updated: 2021/11/13 22:19:14 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/13 23:10:43 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int		is_sorted_b(t_stack *b, int range);
 
 int		a_division(t_stack *a, t_stack *b, int range);
 int		b_division(t_stack *a, t_stack *b, int range);
+
+void	init_stack(t_stack *a, t_stack *b, int ac, char **av);
 
 void	ft_size2(t_stack *s);
 

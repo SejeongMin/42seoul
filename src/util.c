@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:16:37 by semin             #+#    #+#             */
-/*   Updated: 2021/11/11 17:54:24 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/13 23:10:44 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,6 @@ int	is_sorted_b(t_stack *b, int range)
 	return (1);
 }
 
-int	ft_error(t_stack *a, t_stack *b)
-{
-	write(1, "Error\n", 6);
-	free(a->stack);
-	free(b->stack);
-	exit(1);
-}
-
 int	ft_atoi(char *s, t_stack *a, t_stack *b)
 {
 	long long	ret;
@@ -59,9 +51,10 @@ int	ft_atoi(char *s, t_stack *a, t_stack *b)
 
 	ret = 0;
 	sign = 1;
-	if (s[0] == '-')
+	if (s[0] == '-' || s[0] == '+')
 	{
-		sign = -1;
+		if (s[0] == '-')
+			sign = -1;
 		s++;
 	}
 	while (*s)
@@ -91,4 +84,26 @@ int	is_dup(int *stack, int idx)
 		i++;
 	}
 	return (1);
+}
+
+void	init_stack(t_stack *a, t_stack *b, int ac, char **av)
+{
+	int	idx;
+
+	idx = 0;
+	a->stack = (int *)malloc(sizeof(int) * (ac - 1));
+	b->stack = (int *)malloc(sizeof(int) * (ac - 1));
+	a->stack_name = 'a';
+	b->stack_name = 'b';
+	a->top = -1;
+	b->top = -1;
+	while (ac > 1)
+	{
+		a->stack[idx] = ft_atoi(av[ac - 1], a, b);
+		if (is_dup(a->stack, idx) < 0)
+			ft_error(a, b);
+		idx++;
+		a->top++;
+		ac--;
+	}
 }
