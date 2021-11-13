@@ -6,13 +6,13 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:13:04 by semin             #+#    #+#             */
-/*   Updated: 2021/11/05 02:34:30 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/13 21:12:58 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void    ft_size3(t_stack *stack)
+static void	ft_size3(t_stack *stack)
 {
 	int	*s;
 	int	t;
@@ -21,37 +21,26 @@ static void    ft_size3(t_stack *stack)
 	t = stack->top;
 	if (s[t - 2] > s[t - 1] && s[t - 2] > s[t] && s[t - 1] < s[t])
 		ft_swap(stack);
-	else if (s[t - 2] < s[t - 1] && s[t - 2] > s[t] && s[t - 1] > s[t])
+	else if (s[t - 2] < s[t - 1] && s[t - 1] > s[t])
 	{
 		ft_rotate(stack);
 		ft_swap(stack);
 		ft_rev_rotate(stack);
+		if (s[t] > s[t - 1])
+			ft_swap(stack);
 	}
-	else if (s[t - 2] < s[t - 1] && s[t - 2] < s[t] && s[t - 1] > s[t])
-	{
-		ft_rotate(stack);
-		ft_swap(stack);
-		ft_rev_rotate(stack);
-		ft_swap(stack);
-	}
-	else if (s[t - 2] > s[t - 1] && s[t - 2] < s[t] && s[t - 1] < s[t])
+	else if (s[t - 2] < s[t] && s[t - 1] < s[t])
 	{
 		ft_swap(stack);
 		ft_rotate(stack);
 		ft_swap(stack);
 		ft_rev_rotate(stack);
-	}
-	else if (s[t - 2] < s[t - 1] && s[t - 2] < s[t] && s[t - 1] < s[t])
-	{
-		ft_swap(stack);
-		ft_rotate(stack);
-		ft_swap(stack);
-		ft_rev_rotate(stack);
-		ft_swap(stack);
+		if (s[t] > s[t - 1])
+			ft_swap(stack);
 	}
 }
 
-void    ft_size2(t_stack *s)
+void	ft_size2(t_stack *s)
 {
 	if (s->stack[s->top - 1] < s->stack[s->top])
 		ft_swap(s);
@@ -83,7 +72,7 @@ void	ft_three_argument(t_stack *stack)
 		ft_swap(stack);
 		ft_rotate(stack);
 	}
-	else if (s[t - 2] < s[t - 1] && s[t - 2] < s[t] && s[t - 1] > s[t])	
+	else if (s[t - 2] < s[t - 1] && s[t - 2] < s[t] && s[t - 1] > s[t])
 		ft_rev_rotate(stack);
 	else if (s[t - 2] > s[t - 1] && s[t - 2] < s[t] && s[t - 1] < s[t])
 		ft_rotate(stack);

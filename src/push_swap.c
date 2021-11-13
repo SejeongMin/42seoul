@@ -6,13 +6,13 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:38:24 by semin             #+#    #+#             */
-/*   Updated: 2021/11/09 03:06:01 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/13 20:38:47 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	is_dup2(t_stack *a, int idx, int num)
+static void	is_dup2(t_stack *a, t_stack *b, int idx, int num)
 {
 	int	i;
 
@@ -21,12 +21,12 @@ static void	is_dup2(t_stack *a, int idx, int num)
 	while (i > idx)
 	{
 		if (a->stack[idx] == a->stack[i])
-			ft_error();
+			ft_error(a, b);
 		i--;
 	}
 }
 
-static void	ft_split(t_stack *a, char *s)
+static void	ft_split(t_stack *a, t_stack *b, char *s)
 {
 	char	*tmp;
 	int		top;
@@ -45,9 +45,9 @@ static void	ft_split(t_stack *a, char *s)
 				if (*s >= '0' && *s <= '9')
 					num = num * 10 + (*(s++) - '0');
 				else
-					ft_error();
+					ft_error(a, b);
 			}
-			is_dup2(a, top, num);
+			is_dup2(a, b, top, num);
 			top--;
 		}
 		if (*s)
@@ -62,7 +62,7 @@ static void	one_argument(t_stack *a, t_stack *b, char *s)
 	a->stack_name = 'a';
 	b->stack_name = 'b';
 	b->top = -1;
-	ft_split(a, s);
+	ft_split(a, b, s);
 }
 
 static void	init_stack(t_stack *a, t_stack *b, int ac, char **av)
@@ -78,30 +78,13 @@ static void	init_stack(t_stack *a, t_stack *b, int ac, char **av)
 	b->top = -1;
 	while (ac > 1)
 	{
-		a->stack[idx] = ft_atoi(av[ac - 1]);
+		a->stack[idx] = ft_atoi(av[ac - 1], a, b);
 		if (is_dup(a->stack, idx) < 0)
-			ft_error();
+			ft_error(a, b);
 		idx++;
 		a->top++;
 		ac--;
 	}
-}
-
-#include <stdio.h>
-
-void printing(t_stack *a, t_stack *b)
-{
-	int atop = a->top;
-	(void)b;
-	// int btop = b->top;
-	while (atop >= 0){
-		printf("%d ", a->stack[atop]);
-		atop--;
-	}
-	// while (btop >= 0){
-	// 	printf("%d ", b->stack[btop]);
-	// 	btop--;
-	// }
 }
 
 int	main(int ac, char **av)
@@ -114,12 +97,11 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		one_argument(&a, &b, av[1]);
-		A_to_B(&a, &b, wdcount(av[1]));
+		a_to_b(&a, &b, wdcount(av[1]));
 	}
 	else
 	{
 		init_stack(&a, &b, ac, av);
-		A_to_B(&a, &b, ac - 1);
+		a_to_b(&a, &b, ac - 1);
 	}
-	// printing(&a, &b);
 }

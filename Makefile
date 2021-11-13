@@ -6,14 +6,14 @@
 #    By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/11 20:38:05 by semin             #+#    #+#              #
-#    Updated: 2021/11/04 16:05:25 by semin            ###   ########.fr        #
+#    Updated: 2021/11/13 22:06:22 by semin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra
 NAME=push_swap
-SRC=$(addprefix src/, push_swap.c small_range.c sort.c stack.c util.c five_arg.c)
+SRC=$(addprefix src/, push_swap.c small_range.c sort.c stack.c util.c util2.c)
 OBJ=$(SRC:.c=.o)
 INC=-I./inc
 

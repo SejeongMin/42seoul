@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:16:37 by semin             #+#    #+#             */
-/*   Updated: 2021/11/09 02:28:17 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/11 17:54:24 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_sorted_a(t_stack *a, int range)
 	cur = a->top;
 	while (--range)
 	{
-		if (a->stack[cur] > a->stack[cur - 1]) //중복검사 여기서 하면 되겠다~
+		if (a->stack[cur] > a->stack[cur - 1])
 			return (0);
 		cur--;
 	}
@@ -44,17 +44,18 @@ int	is_sorted_b(t_stack *b, int range)
 	return (1);
 }
 
-int	ft_error()
+int	ft_error(t_stack *a, t_stack *b)
 {
 	write(1, "Error\n", 6);
-	//free
+	free(a->stack);
+	free(b->stack);
 	exit(1);
 }
 
-int	ft_atoi(char *s)
+int	ft_atoi(char *s, t_stack *a, t_stack *b)
 {
 	long long	ret;
-	int	sign;
+	int			sign;
 
 	ret = 0;
 	sign = 1;
@@ -71,10 +72,10 @@ int	ft_atoi(char *s)
 			s++;
 		}
 		else
-			ft_error();
+			ft_error(a, b);
 	}
 	if (ret >= 2147483648 || ret <= -2147483649)
-		ft_error();
+		ft_error(a, b);
 	return ((int)ret * sign);
 }
 

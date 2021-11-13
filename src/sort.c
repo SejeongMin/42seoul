@@ -6,46 +6,11 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:16:20 by semin             #+#    #+#             */
-/*   Updated: 2021/11/09 02:51:11 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/13 22:17:08 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-#include <stdio.h>
-
-int	choose_pivot(t_stack *stack, int range)
-{
-	int	chunk[range];
-	int	tmp_range;
-	int	i;
-	int	min;
-	int	tmp;
-
-	i = stack->top;
-	tmp_range = range;
-	while (--tmp_range >= 0)
-	{
-		chunk[tmp_range] = stack->stack[i];
-		i--;
-	}
-	tmp_range = range;
-	while (--tmp_range >= 0)
-	{
-		i = tmp_range - 1;
-		min = tmp_range;
-		while (i >= 0)
-		{
-			if (chunk[i] < chunk[min])
-				min = i;
-			i--;
-		}
-		tmp = chunk[tmp_range];
-		chunk[tmp_range] = chunk[min];
-		chunk[min] = tmp;
-	}
-	return (chunk[(range / 2) + (range % 2)]);
-}
 
 int	a_division(t_stack *a, t_stack *b, int range)
 {
@@ -105,13 +70,7 @@ int	b_division(t_stack *a, t_stack *b, int range)
 	return (count_push);
 }
 
-void	repeat_push(t_stack *s1, t_stack *s2, int range)
-{
-	while (range--)
-		ft_push(s1, s2);
-}
-
-void	B_to_A(t_stack *a, t_stack *b, int range)
+void	b_to_a(t_stack *a, t_stack *b, int range)
 {
 	int	count_push;
 	int	count_rotate;
@@ -119,20 +78,21 @@ void	B_to_A(t_stack *a, t_stack *b, int range)
 	if (is_sorted_b(b, range))
 	{
 		repeat_push(a, b, range);
-		return;
+		return ;
 	}
-	if (range <= 5)
+	if (range <= 3)
 	{
-		b_five_arg(a, b, range);
+		repeat_push(a, b, range);
+		ft_small_range(a, range);
 		return ;
 	}
 	count_push = b_division(a, b, range);
 	count_rotate = range - count_push;
-	A_to_B(a, b, count_push);
-	B_to_A(a, b, count_rotate);
+	a_to_b(a, b, count_push);
+	b_to_a(a, b, count_rotate);
 }
 
-void	A_to_B(t_stack *a, t_stack *b, int range)
+void	a_to_b(t_stack *a, t_stack *b, int range)
 {
 	int	count_push;
 	int	count_rotate;
@@ -146,6 +106,6 @@ void	A_to_B(t_stack *a, t_stack *b, int range)
 	}
 	count_push = a_division(a, b, range);
 	count_rotate = range - count_push;
-	A_to_B(a, b, count_rotate);
-	B_to_A(a, b, count_push);
+	a_to_b(a, b, count_rotate);
+	b_to_a(a, b, count_push);
 }
