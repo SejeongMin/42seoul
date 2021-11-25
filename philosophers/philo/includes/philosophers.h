@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:45:08 by semin             #+#    #+#             */
-/*   Updated: 2021/11/24 18:22:10 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/26 00:04:59 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ typedef struct s_time
 	time_t		tv_sec;
 	suseconds_t	tv_usec;
 }	t_time;
+
+typedef struct	s_params
+{
+	pthread_mutex_t mutex;
+	int				num;
+}	t_params;
+
 
 void    ft_error();
 int 	ft_atoi(char *s);

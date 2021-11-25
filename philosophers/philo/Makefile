@@ -6,7 +6,7 @@
 #    By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/24 18:23:56 by semin             #+#    #+#              #
-#    Updated: 2021/11/24 18:45:55 by semin            ###   ########.fr        #
+#    Updated: 2021/11/26 00:27:34 by semin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INC = -I./includes
 all	: $(NAME)
 
 $(NAME) :
-	$(CC) $(INC) -g -fsanitize=address $(SRC) -o $@
+	$(CC) $(INC) $(SRC) -o $@
 
 clean:
 	rm -f $(NAME)
