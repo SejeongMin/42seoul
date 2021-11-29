@@ -6,7 +6,7 @@
 #    By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/24 18:23:56 by semin             #+#    #+#              #
-#    Updated: 2021/11/26 18:42:22 by semin            ###   ########.fr        #
+#    Updated: 2021/11/29 18:32:59 by semin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror #나중에 추가
 LIBS = -lpthread
 NAME = philo
-SRC = $(addprefix src/, philosophers.c util.c)
+SRC = $(addprefix src/, philosophers.c util.c philo_action.c philo_init.c)
 INC = -I./includes
 SEG = -g -fsanitize=address
 
