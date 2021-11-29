@@ -6,37 +6,30 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:07:48 by semin             #+#    #+#             */
-/*   Updated: 2021/11/29 19:54:55 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/30 01:26:17 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-// unsigned int	get_time()
-// {
-// 	struct timeval	time;
-
-
-// }
 
 void	create_philosophers(t_params *params)
 {
 	int		i;
 	t_philo	*philo;
 	int		ret;
-	struct timeval	time;
 
 	philo = params->philo;
+	params->start = get_time();
 	i = 0;
 	while (i < params->philo_num)
 	{
-		pthread_mutex_lock(&params->m);
 		philo[i].num = i + 1;
+		philo[i].eating = 0;
+		philo[i].last_ate = params->start;
 		params->cur_num = i;
 		if (pthread_create(&(philo[i].pthread), 0, (void *)routine, params))
 			ft_error(params);
-		pthread_mutex_unlock(&params->m);
-		usleep(10);
+		usleep(1);
 		i++;
 	}
 }
