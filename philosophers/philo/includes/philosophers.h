@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:45:08 by semin             #+#    #+#             */
-/*   Updated: 2021/11/30 14:50:35 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/30 17:37:00 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ float		time_gap(t_params *params);
 
 void    	ft_error(t_params *params);
 int			ft_free(t_params **params);
-int 		ft_atoi(char *s);
+int 		ft_atoi(char *s, t_params *params);
 
 #endif
