@@ -6,7 +6,7 @@
 #    By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/24 18:23:56 by semin             #+#    #+#              #
-#    Updated: 2021/11/29 22:47:56 by semin            ###   ########.fr        #
+#    Updated: 2021/11/30 16:31:41 by semin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,19 +14,31 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror #나중에 추가
 LIBS = -lpthread
 NAME = philo
-SRC = $(addprefix src/, philosophers.c util.c philo_action.c philo_init.c philo_time.c)
+FILE = philosophers\
+		util\
+		philo_action\
+		philo_init\
+		philo_time\
+SRC_DIR = ./src/
+SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILE)))
+OBJ_DIR = ./src/
+OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILE)))
 INC = -I./includes
 SEG = -g -fsanitize=address
 
+.c.o: $(SRC)
+	$(CC) -c -o $@ $< $(INC)
+
 all	: $(NAME)
 
-$(NAME) :
-	$(CC) $(LIBS) $(INC) $(SRC) -o $@
+$(NAME) : $(OBJS)
+	$(CC) $(LIBS) -o $@ $^
 
 clean:
-	rm -f $(NAME)
+	rm -f $(OBJ)
 
 fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 

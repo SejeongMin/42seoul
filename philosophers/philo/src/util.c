@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:49:23 by semin             #+#    #+#             */
-/*   Updated: 2021/11/29 19:38:44 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/30 14:18:47 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	ft_free(t_params **params)
 void	ft_error(t_params *params)
 {
 	printf("Error\n");
-	ft_free(&(params));
-	exit(1);
+	params->dead = 1;
+	usleep(1000);
 }
 
 int	ft_atoi(char *s)
@@ -35,7 +35,7 @@ int	ft_atoi(char *s)
 	if (*s == '-' || *s == '+')
 	{
 		if (*s == '-')
-			exit(1);
+			exit(1); //not allowed exit function...
 		s++;
 	}
 	while (*s)

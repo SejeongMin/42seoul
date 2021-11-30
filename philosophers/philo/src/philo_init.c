@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:28:59 by semin             #+#    #+#             */
-/*   Updated: 2021/11/29 19:39:11 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/30 14:51:15 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_params	*param_init(int ac, char **av)
 
 	num = ft_atoi(av[1]);
 	params = (t_params *)malloc(sizeof(t_params));
-	pthread_mutex_init(&params->m, 0);
+	pthread_mutex_init(&params->print, 0);
 	params->philo_num = num;
 	params->dead = 0;
 	params->die = ft_atoi(av[2]) * 1000;
@@ -52,6 +52,7 @@ t_params	*param_init(int ac, char **av)
 	else
 		params->time_to_eat = -1;
 	params->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * num);
+	// params->check = (pthread_t *)malloc(sizeof(pthread_t) * num);
 	params->philo = (t_philo *)malloc(sizeof(t_philo) * num);
 	fork_init(params);
 	return (params);

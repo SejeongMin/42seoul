@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:07:48 by semin             #+#    #+#             */
-/*   Updated: 2021/11/30 01:26:17 by semin            ###   ########.fr       */
+/*   Updated: 2021/11/30 14:26:30 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,18 @@ void	create_philosophers(t_params *params)
 	philo = params->philo;
 	params->start = get_time();
 	i = 0;
-	while (i < params->philo_num)
+	while (i < params->philo_num && params->dead == 0)
 	{
 		philo[i].num = i + 1;
 		philo[i].eating = 0;
 		philo[i].last_ate = params->start;
 		params->cur_num = i;
 		if (pthread_create(&(philo[i].pthread), 0, (void *)routine, params))
+		{
 			ft_error(params);
-		usleep(1);
+			break;
+		}
+		usleep(10);
 		i++;
 	}
 }
