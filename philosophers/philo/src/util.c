@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:49:23 by semin             #+#    #+#             */
-/*   Updated: 2021/11/30 17:36:46 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/01 21:46:41 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,24 @@ int	ft_atoi(char *s, t_params *params)
 	return (ret);
 }
 
+void	my_usleep(useconds_t wait)
+{
+	useconds_t	start;
+
+	start = get_time();
+	while (get_time() - start < wait)
+	{
+		usleep(1);
+	}
+}
+
 void	destroy_mutex(t_params *params)
 {
-	// int	num;
+	int	num;
 
-	// num = params->philo_num;
-	// while (--num >= 0)
-	// {
-	// 	pthread_mutex_destroy(&(params->philo[num].mutex));
-	// }
+	num = params->philo_num;
+	while (--num >= 0)
+	{
+		pthread_mutex_destroy(&params->forks[num]);
+	}
 }

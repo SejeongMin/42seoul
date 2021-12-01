@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:45:08 by semin             #+#    #+#             */
-/*   Updated: 2021/11/30 17:37:00 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/01 23:21:05 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	pthread_t		pthread;
 	int				num;
@@ -30,14 +30,13 @@ typedef struct	s_philo
 	int				dead;
 	int				eating;
 	pthread_t		check;
+	int				ate;
 }	t_philo;
 
-typedef struct	s_params
+typedef struct s_params
 {
 	t_philo			*philo;
-	pthread_mutex_t *forks;
-	pthread_mutex_t print;
-	pthread_mutex_t	time_mutex;
+	pthread_mutex_t	*forks;
 	int				philo_num;
 	int				cur_num;
 	useconds_t		start;
@@ -53,11 +52,15 @@ t_params	*param_init(int ac, char **av);
 
 void		*routine(t_params *params);
 
-useconds_t	get_time();
+useconds_t	get_time(void);
 float		time_gap(t_params *params);
+void		my_usleep(useconds_t wait);
 
-void    	ft_error(t_params *params);
+void		ft_error(t_params *params);
 int			ft_free(t_params **params);
-int 		ft_atoi(char *s, t_params *params);
+int			ft_atoi(char *s, t_params *params);
+
+void		destroy_mutex(t_params *params);
+void		kill_philo(t_params *params, t_philo *philo);
 
 #endif
