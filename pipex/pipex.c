@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 12:02:29 by semin             #+#    #+#             */
-/*   Updated: 2021/07/15 20:12:08 by semin            ###   ########.fr       */
+/*   Updated: 2021/07/17 14:31:43 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	run_cmd(char *cmd)
 {
 	char	**ret;
-	char	*command[5];
+	char	*command[6];
 	int		i;
 
 	ret = ft_split(cmd, ' ');
@@ -24,6 +24,7 @@ void	run_cmd(char *cmd)
 	command[2] = ft_strjoin("/usr/local/bin/", ret[0]);
 	command[3] = ft_strjoin("/usr/sbin/", ret[0]);
 	command[4] = ft_strjoin("/sbin/", ret[0]);
+	command[5] = 0;
 	i = 0;
 	while (i < 5)
 	{
@@ -70,7 +71,7 @@ int	main(int ac, char *av[])
 	}
 	else
 	{
-		waitpid(-1, &status, 0);
+		wait(&status);
 		close(fd[1]);
 		parent(fd[0], av[4], av[3]);
 	}
