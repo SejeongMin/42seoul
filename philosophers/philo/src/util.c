@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:49:23 by semin             #+#    #+#             */
-/*   Updated: 2021/12/01 21:46:41 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/02 15:01:42 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_error(t_params *params)
 {
 	printf("Error\n");
 	params->dead = 1;
-	usleep(1000);
+	// usleep(1000);
 }
 
 int	ft_atoi(char *s, t_params *params)
@@ -71,4 +71,5 @@ void	destroy_mutex(t_params *params)
 	{
 		pthread_mutex_destroy(&params->forks[num]);
 	}
+	pthread_mutex_destroy(&params->print);
 }

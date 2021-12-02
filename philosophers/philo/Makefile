@@ -6,7 +6,7 @@
 #    By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/24 18:23:56 by semin             #+#    #+#              #
-#    Updated: 2021/11/30 18:13:25 by semin            ###   ########.fr        #
+#    Updated: 2021/12/02 15:12:09 by semin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILE)))
 OBJ_DIR = ./src/
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILE)))
 INC = -I./includes
-SEG = -g -fsanitize=address
 
 .c.o: $(SRC)
 	$(CC) $(INC) -c -o $@ $<
@@ -33,7 +32,7 @@ SEG = -g -fsanitize=address
 all	: $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) -g $(LIBS) -o $@ $^
+	$(CC) $(CFLAGS) $(LIBS) -o $@ $^
 
 clean:
 	rm -f $(OBJ)

@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:32:06 by semin             #+#    #+#             */
-/*   Updated: 2021/12/01 23:21:12 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/02 15:20:14 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	philo_eat(t_params *params, t_philo *philo)
 	}
 	philo->ate++;
 	philo->eating = 1;
-	printf("[%.0f] %d has taken a fork\n", time_gap(params), philo->num);
-	printf("[%.0f] %d has taken a fork\n", time_gap(params), philo->num);
-	printf("[%.0f] %d is eating\n", time_gap(params), philo->num);
+	pthread_mutex_lock(&params->print);
+	printf("%.0f %d has taken a fork\n", time_gap(params), philo->num);
+	printf("%.0f %d has taken a fork\n", time_gap(params), philo->num);
+	printf("%.0f %d is eating\n", time_gap(params), philo->num);
+	pthread_mutex_unlock(&params->print);
 	philo->last_ate = get_time();
 	my_usleep(params->eat);
 	philo->eating = 0;
@@ -40,7 +42,9 @@ void	philo_eat(t_params *params, t_philo *philo)
 
 void	philo_sleep(t_params *params, t_philo *philo)
 {
-	printf("[%.0f] %d is sleeping\n", time_gap(params), philo->num);
+	pthread_mutex_lock(&params->print);
+	printf("%.0f %d is sleeping\n", time_gap(params), philo->num);
+	pthread_mutex_unlock(&params->print);
 	if (params->sleep >= params->die)
 	{
 		my_usleep(params->die);
@@ -52,7 +56,9 @@ void	philo_sleep(t_params *params, t_philo *philo)
 
 void	philo_think(t_params *params, t_philo *philo)
 {
-	printf("[%.0f] %d is thinking\n", time_gap(params), philo->num);
+	pthread_mutex_lock(&params->print);
+	printf("%.0f %d is thinking\n", time_gap(params), philo->num);
+	pthread_mutex_unlock(&params->print);
 }
 
 void	*dead_check(t_params *params)

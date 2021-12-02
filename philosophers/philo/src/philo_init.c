@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:28:59 by semin             #+#    #+#             */
-/*   Updated: 2021/12/01 23:13:44 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/02 13:15:04 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_params	*param_init(int ac, char **av)
 	params->die = ft_atoi(av[2], params) * 1000;
 	params->eat = ft_atoi(av[3], params) * 1000;
 	params->sleep = ft_atoi(av[4], params) * 1000;
+	pthread_mutex_init(&params->print, 0);
 	if (ac == 6)
 		params->time_to_eat = ft_atoi(av[5], params);
 	else
