@@ -6,11 +6,11 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:49:23 by semin             #+#    #+#             */
-/*   Updated: 2021/12/02 16:03:37 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/02 15:40:18 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosophers_bonus.h"
 
 int	ft_free(t_params **params)
 {
@@ -24,7 +24,7 @@ void	ft_error(t_params *params)
 {
 	printf("Error\n");
 	params->dead = 1;
-	usleep(1000);
+	// usleep(1000);
 }
 
 int	ft_atoi(char *s, t_params *params)
