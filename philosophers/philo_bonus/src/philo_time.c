@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 22:46:56 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 21:12:12 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 22:28:47 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,19 @@ float	time_gap(t_params *params)
 
 void	kill_philo(t_params *params, t_philo *philo)
 {
-	int	philo_num;
+	int	i;
 
 	if (params->dead == 1)
 		return ;
 	params->dead = 1;
 	sem_wait(params->print);
 	printf("%.0f %d died\n", time_gap(params), philo->num);
+	i = 0;
+	while (i < params->philo_num)
+	{
+		if (i + 1 != philo->num)
+			kill(params->philo[i].pid, SIGKILL);
+		i++;
+	}
 	exit(1);
 }

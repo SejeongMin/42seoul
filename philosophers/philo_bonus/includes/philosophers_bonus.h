@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:45:08 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 21:12:52 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 22:13:06 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_philo
 	int				eating;
 	pthread_t		check;
 	int				ate;
+	pid_t			pid;
 }	t_philo;
 
 typedef struct s_params

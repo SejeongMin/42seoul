@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:32:06 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 21:11:46 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 22:30:09 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,7 @@ void	philo_sleep(t_params *params, t_philo *philo)
 	sem_wait(params->print);
 	printf("%.0f %d is sleeping\n", time_gap(params), philo->num);
 	sem_post(params->print);
-	if (params->sleep >= params->die)
-	{
-		my_usleep(params->die);
-		kill_philo(params, philo);
-	}
-	else
-		my_usleep(params->sleep);
+	my_usleep(params->die);
 }
 
 void	philo_think(t_params *params, t_philo *philo)
@@ -85,14 +79,10 @@ void	routine(t_params *params, t_philo *philo)
 	while (params->dead == 0)
 	{
 		philo_eat(params, philo);
-		if (params->dead == 1)
-			break ;
 		if (params->time_to_eat >= 0
 			&& philo->ate >= params->time_to_eat)
 			exit(0);
 		philo_sleep(params, philo);
-		if (params->dead == 1)
-			break ;
 		philo_think(params, philo);
 	}
 	exit(1);

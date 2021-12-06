@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:07:48 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 21:08:40 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 22:27:25 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	create_philosophers(t_params *params)
 {
 	int		i;
 	t_philo	*philo;
-	pid_t	pid;
 
 	philo = params->philo;
 	params->start = get_time();
@@ -27,11 +26,12 @@ void	create_philosophers(t_params *params)
 		philo[i].eating = 0;
 		philo[i].ate = 0;
 		params->cur_num = i;
-		pid = fork();
-		if (pid == 0)
+		philo[i].pid = fork();
+		if (philo[i].pid == 0)
 		{
 			routine(params, &philo[i]);
 		}
+		usleep(50);
 		i++;
 	}
 }
