@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:07:48 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 22:27:25 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 23:01:29 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@ void	create_philosophers(t_params *params)
 {
 	int		i;
 	t_philo	*philo;
+	sem_t	*forks;
+	sem_t	*print;
 
 	philo = params->philo;
 	params->start = get_time();
+	forks = sem_open("forks", O_CREAT | O_EXCL, 0644, params->philo_num);
+	print = sem_open("forks", O_CREAT | O_EXCL, 0644, params->philo_num);
 	i = 0;
 	while (i < params->philo_num && params->dead == 0)
 	{
@@ -26,6 +30,8 @@ void	create_philosophers(t_params *params)
 		philo[i].eating = 0;
 		philo[i].ate = 0;
 		params->cur_num = i;
+		philo[i].forks = forks;
+		philo[i].print = print;
 		philo[i].pid = fork();
 		if (philo[i].pid == 0)
 		{
@@ -34,6 +40,10 @@ void	create_philosophers(t_params *params)
 		usleep(50);
 		i++;
 	}
+	sem_unlink("forks");
+	sem_unlink("print");
+	sem_close(forks);
+	sem_close(print);
 }
 
 int	main(int ac, char **av)

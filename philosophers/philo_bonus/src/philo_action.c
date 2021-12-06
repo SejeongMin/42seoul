@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:32:06 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 22:30:09 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 23:01:13 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,37 @@
 
 void	philo_eat(t_params *params, t_philo *philo)
 {
-	sem_wait(params->sem);
-	sem_wait(params->sem);
+	sem_wait(philo->forks);
+	sem_wait(philo->forks);
 	if (params->dead == 1)
 		return ;
 	philo->ate++;
 	philo->eating = 1;
-	sem_wait(params->print);
+	sem_wait(philo->print);
 	printf("%.0f %d has taken a fork\n", time_gap(params), philo->num);
 	printf("%.0f %d has taken a fork\n", time_gap(params), philo->num);
 	printf("%.0f %d is eating\n", time_gap(params), philo->num);
-	sem_post(params->print);
+	sem_post(philo->print);
 	philo->last_ate = get_time();
 	my_usleep(params->eat);
 	philo->eating = 0;
-	sem_post(params->sem);
-	sem_post(params->sem);
+	sem_post(philo->forks);
+	sem_post(philo->forks);
 }
 
 void	philo_sleep(t_params *params, t_philo *philo)
 {
-	sem_wait(params->print);
+	sem_wait(philo->print);
 	printf("%.0f %d is sleeping\n", time_gap(params), philo->num);
-	sem_post(params->print);
+	sem_post(philo->print);
 	my_usleep(params->die);
 }
 
 void	philo_think(t_params *params, t_philo *philo)
 {
-	sem_wait(params->print);
+	sem_wait(philo->print);
 	printf("%.0f %d is thinking\n", time_gap(params), philo->num);
-	sem_post(params->print);
+	sem_post(philo->print);
 }
 
 void	*dead_check(t_params *params)

@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:49:23 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 20:38:27 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 22:58:03 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 int	ft_free(t_params **params)
 {
-	sem_unlink("forks");
-	sem_unlink("print");
-	sem_close((*params)->sem);
-	sem_close((*params)->print);
 	free((*params)->philo);
 	free(*params);
 	return (0);
