@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 22:46:56 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 23:01:25 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/07 00:02:59 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void	kill_philo(t_params *params, t_philo *philo)
 			kill(params->philo[i].pid, SIGKILL);
 		i++;
 	}
-	exit(1);
+	exit(42);
 }

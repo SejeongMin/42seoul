@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:32:06 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 23:18:48 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/07 00:01:05 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	philo_sleep(t_params *params, t_philo *philo)
 	sem_wait(philo->print);
 	printf("%.0f %d is sleeping\n", time_gap(params), philo->num);
 	sem_post(philo->print);
-	my_usleep(params->die);
+	my_usleep(params->sleep);
 }
 
 void	philo_think(t_params *params, t_philo *philo)

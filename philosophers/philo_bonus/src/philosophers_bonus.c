@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:07:48 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 23:01:29 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 23:49:47 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,13 @@ int	main(int ac, char **av)
 		return (1);
 	params = param_init(ac, av);
 	create_philosophers(params);
-	waitpid(-1, &status, 0);
+	int i = 0;
 	philo_num = params->philo_num;
+	while (i < philo_num)
+	{
+		waitpid(params->philo[i].pid, &status, 0);
+		i++;
+	}
 	if (status == 0)
 		printf("All philosophers survived!\n");
 	ft_free(&(params));
