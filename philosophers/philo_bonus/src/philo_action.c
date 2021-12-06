@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:32:06 by semin             #+#    #+#             */
-/*   Updated: 2021/12/02 15:40:29 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 21:11:46 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,29 @@
 
 void	philo_eat(t_params *params, t_philo *philo)
 {
-	if (pthread_mutex_lock(philo->f1))
-		ft_error(params);
-	if (pthread_mutex_lock(philo->f2))
-		ft_error(params);
+	sem_wait(params->sem);
+	sem_wait(params->sem);
 	if (params->dead == 1)
-	{
-		pthread_mutex_unlock(philo->f2);
-		pthread_mutex_unlock(philo->f1);
 		return ;
-	}
 	philo->ate++;
 	philo->eating = 1;
-	pthread_mutex_lock(&params->print);
+	sem_wait(params->print);
 	printf("%.0f %d has taken a fork\n", time_gap(params), philo->num);
 	printf("%.0f %d has taken a fork\n", time_gap(params), philo->num);
 	printf("%.0f %d is eating\n", time_gap(params), philo->num);
-	pthread_mutex_unlock(&params->print);
+	sem_post(params->print);
 	philo->last_ate = get_time();
 	my_usleep(params->eat);
 	philo->eating = 0;
-	if (pthread_mutex_unlock(philo->f2))
-		ft_error(params);
-	if (pthread_mutex_unlock(philo->f1))
-		ft_error(params);
+	sem_post(params->sem);
+	sem_post(params->sem);
 }
 
 void	philo_sleep(t_params *params, t_philo *philo)
 {
-	pthread_mutex_lock(&params->print);
+	sem_wait(params->print);
 	printf("%.0f %d is sleeping\n", time_gap(params), philo->num);
-	pthread_mutex_unlock(&params->print);
+	sem_post(params->print);
 	if (params->sleep >= params->die)
 	{
 		my_usleep(params->die);
@@ -56,9 +48,9 @@ void	philo_sleep(t_params *params, t_philo *philo)
 
 void	philo_think(t_params *params, t_philo *philo)
 {
-	pthread_mutex_lock(&params->print);
+	sem_wait(params->print);
 	printf("%.0f %d is thinking\n", time_gap(params), philo->num);
-	pthread_mutex_unlock(&params->print);
+	sem_post(params->print);
 }
 
 void	*dead_check(t_params *params)
@@ -74,36 +66,34 @@ void	*dead_check(t_params *params)
 		{
 			kill_philo(params, &params->philo[num]);
 		}
-		usleep(10);
 		if (params->dead == 1)
 			break ;
 	}
 	return (NULL);
 }
 
-void	*routine(t_params *params)
+void	routine(t_params *params, t_philo *philo)
 {
 	int	num;
 
+	if (params->dead == 1)
+		exit(1);
 	num = params->cur_num;
-	pthread_create(&params->philo[num].check, 0, (void *)dead_check, params);
-	if (params->philo[num].f1 == params->philo[num].f2)
-		my_usleep(params->die);
+	philo->last_ate = params->start;
+	pthread_detach(philo->check);
+	pthread_create(&philo->check, 0, (void *)dead_check, params);
 	while (params->dead == 0)
 	{
-		philo_eat(params, &params->philo[num]);
+		philo_eat(params, philo);
 		if (params->dead == 1)
 			break ;
 		if (params->time_to_eat >= 0
-			&& params->philo[num].ate >= params->time_to_eat)
-			break ;
-		philo_sleep(params, &params->philo[num]);
+			&& philo->ate >= params->time_to_eat)
+			exit(0);
+		philo_sleep(params, philo);
 		if (params->dead == 1)
 			break ;
-		philo_think(params, &params->philo[num]);
-		if (params->dead == 1)
-			break ;
+		philo_think(params, philo);
 	}
-	pthread_detach(params->philo[num].check);
-	return (NULL);
+	exit(1);
 }

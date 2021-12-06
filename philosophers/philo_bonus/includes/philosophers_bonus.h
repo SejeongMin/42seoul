@@ -6,29 +6,27 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:45:08 by semin             #+#    #+#             */
-/*   Updated: 2021/12/02 15:52:36 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 21:12:52 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILOSOPHERS_BONUS_H
+# define PHILOSOPHERS_BONUS_H
 
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <pthread.h>
+# include <semaphore.h>
 # include <sys/time.h>
+# include <sys/wait.h>
+# include <signal.h>
 
 typedef struct s_philo
 {
-	pthread_t		pthread;
 	int				num;
 	useconds_t		last_ate;
-	pthread_mutex_t	*f1;
-	pthread_mutex_t	*f2;
-	//mutex -> semaphore 로 바꾸기
-	int				dead;
 	int				eating;
 	pthread_t		check;
 	int				ate;
@@ -37,14 +35,11 @@ typedef struct s_philo
 typedef struct s_params
 {
 	t_philo			*philo;
-	// pthread_mutex_t	*forks;
-	// pthread_mutex_t	print;
-	// 여러개의 프로세스 생성 후 안에서 death돌리기
-	// 세마포어가 2이상일 경우 포크를 집고 먹음
-	// 죽을 경우 free 후 exit
+	useconds_t		start;
 	int				philo_num;
 	int				cur_num;
-	useconds_t		start;
+	sem_t			*sem;
+	sem_t			*print;
 	useconds_t		die;
 	useconds_t		eat;
 	useconds_t		sleep;
@@ -55,7 +50,7 @@ typedef struct s_params
 void		fork_init(t_params *params);
 t_params	*param_init(int ac, char **av);
 
-void		*routine(t_params *params);
+void		routine(t_params *params, t_philo *philo);
 
 useconds_t	get_time(void);
 float		time_gap(t_params *params);

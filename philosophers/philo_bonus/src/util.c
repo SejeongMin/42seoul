@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:49:23 by semin             #+#    #+#             */
-/*   Updated: 2021/12/02 15:40:18 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 20:38:27 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	ft_free(t_params **params)
 {
-	free((*params)->forks);
+	sem_unlink("forks");
+	sem_unlink("print");
+	sem_close((*params)->sem);
+	sem_close((*params)->print);
 	free((*params)->philo);
 	free(*params);
 	return (0);
@@ -24,7 +27,6 @@ void	ft_error(t_params *params)
 {
 	printf("Error\n");
 	params->dead = 1;
-	// usleep(1000);
 }
 
 int	ft_atoi(char *s, t_params *params)
@@ -60,16 +62,4 @@ void	my_usleep(useconds_t wait)
 	{
 		usleep(1);
 	}
-}
-
-void	destroy_mutex(t_params *params)
-{
-	int	num;
-
-	num = params->philo_num;
-	while (--num >= 0)
-	{
-		pthread_mutex_destroy(&params->forks[num]);
-	}
-	pthread_mutex_destroy(&params->print);
 }
