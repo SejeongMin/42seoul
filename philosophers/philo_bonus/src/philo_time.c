@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 22:46:56 by semin             #+#    #+#             */
-/*   Updated: 2021/12/07 00:02:59 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/07 02:19:09 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,9 @@ void	kill_philo(t_params *params, t_philo *philo)
 	int	i;
 
 	if (params->dead == 1)
-		return ;
-	params->dead = 1;
+		exit(1);
 	sem_wait(philo->print);
+	params->dead = 1;
 	printf("%.0f %d died\n", time_gap(params), philo->num);
-	i = 0;
-	while (i < params->philo_num)
-	{
-		if (i + 1 != philo->num)
-			kill(params->philo[i].pid, SIGKILL);
-		i++;
-	}
-	exit(42);
+	exit(1);
 }

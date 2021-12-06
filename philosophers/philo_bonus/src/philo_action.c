@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:32:06 by semin             #+#    #+#             */
-/*   Updated: 2021/12/07 00:01:05 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/07 02:00:09 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,15 @@ void	routine(t_params *params, t_philo *philo)
 	while (params->dead == 0)
 	{
 		philo_eat(params, philo);
+		if (params->dead == 1)
+			break ;
 		if (params->time_to_eat >= 0
 			&& philo->ate >= params->time_to_eat)
 			exit(0);
 		philo_sleep(params, philo);
+		if (params->dead == 1)
+			break ;
 		philo_think(params, philo);
 	}
+	exit(1);
 }
