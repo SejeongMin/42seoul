@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:07:48 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 20:47:48 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 23:09:41 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	create_philosophers(t_params *params)
 
 	philo = params->philo;
 	params->start = get_time();
-	printf("%u\n", get_time());
 	i = 0;
 	while (i < params->philo_num && params->dead == 0)
 	{

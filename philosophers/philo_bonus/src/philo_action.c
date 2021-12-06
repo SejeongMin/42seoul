@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:32:06 by semin             #+#    #+#             */
-/*   Updated: 2021/12/06 23:01:13 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 23:18:48 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ void	routine(t_params *params, t_philo *philo)
 {
 	int	num;
 
-	if (params->dead == 1)
-		exit(1);
 	num = params->cur_num;
 	philo->last_ate = params->start;
 	pthread_detach(philo->check);
@@ -85,5 +83,4 @@ void	routine(t_params *params, t_philo *philo)
 		philo_sleep(params, philo);
 		philo_think(params, philo);
 	}
-	exit(1);
 }
