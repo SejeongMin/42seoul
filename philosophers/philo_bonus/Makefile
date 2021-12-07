@@ -6,12 +6,12 @@
 #    By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/24 18:23:56 by semin             #+#    #+#              #
-#    Updated: 2021/12/06 14:21:24 by semin            ###   ########.fr        #
+#    Updated: 2021/12/07 14:10:10 by semin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #나중에 추가
+CFLAGS = -Wall -Wextra -Werror
 LIBS = -lpthread
 NAME = philo_bonus
 FILE = util\

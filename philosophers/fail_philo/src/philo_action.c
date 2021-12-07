@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 18:32:06 by semin             #+#    #+#             */
-/*   Updated: 2021/12/07 22:07:24 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/02 15:20:14 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,32 @@ void	philo_think(t_params *params, t_philo *philo)
 	pthread_mutex_unlock(&params->print);
 }
 
+void	*dead_check(t_params *params)
+{
+	int			num;
+	useconds_t	gap;
+
+	num = params->cur_num;
+	while (params->dead == 0)
+	{
+		gap = get_time() - params->philo[num].last_ate;
+		if (gap >= params->die && !params->philo[num].eating)
+		{
+			kill_philo(params, &params->philo[num]);
+		}
+		usleep(10);
+		if (params->dead == 1)
+			break ;
+	}
+	return (NULL);
+}
+
 void	*routine(t_params *params)
 {
 	int	num;
 
 	num = params->cur_num;
+	pthread_create(&params->philo[num].check, 0, (void *)dead_check, params);
 	if (params->philo[num].f1 == params->philo[num].f2)
 		my_usleep(params->die);
 	while (params->dead == 0)
@@ -73,11 +94,9 @@ void	*routine(t_params *params)
 		philo_eat(params, &params->philo[num]);
 		if (params->dead == 1)
 			break ;
-		if (params->cnt >= 0 && params->philo[num].ate >= params->cnt)
-		{
-			params->ate++;
+		if (params->time_to_eat >= 0
+			&& params->philo[num].ate >= params->time_to_eat)
 			break ;
-		}
 		philo_sleep(params, &params->philo[num]);
 		if (params->dead == 1)
 			break ;
@@ -85,5 +104,6 @@ void	*routine(t_params *params)
 		if (params->dead == 1)
 			break ;
 	}
+	pthread_detach(params->philo[num].check);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:45:08 by semin             #+#    #+#             */
-/*   Updated: 2021/12/07 22:09:05 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/06 14:46:25 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ typedef struct s_philo
 	useconds_t		last_ate;
 	pthread_mutex_t	*f1;
 	pthread_mutex_t	*f2;
+	int				dead;
 	int				eating;
+	pthread_t		check;
 	int				ate;
 }	t_philo;
 
@@ -42,9 +44,8 @@ typedef struct s_params
 	useconds_t		die;
 	useconds_t		eat;
 	useconds_t		sleep;
-	int				cnt;
+	int				time_to_eat;
 	int				dead;
-	int				ate;
 }	t_params;
 
 void		fork_init(t_params *params);

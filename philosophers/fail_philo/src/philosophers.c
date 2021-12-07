@@ -6,39 +6,17 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:07:48 by semin             #+#    #+#             */
-/*   Updated: 2021/12/07 22:17:55 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/07 14:08:54 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*death_check(t_params *params)
-{
-	int			i;
-	useconds_t	gap;
-
-	i = 0;
-	while (params->dead == 0 || params->ate < params->philo_num)
-	{
-		gap = get_time() - params->philo[i].last_ate;
-		if (gap > params->die && !params->philo[i].eating)
-		{
-			kill_philo(params, &params->philo[i]);
-			break ;
-		}
-		i++;
-		if (i >= params->philo_num)
-			i = 0;
-	}
-	return (NULL);
-}
-
 void	create_philosophers(t_params *params)
 {
-	int			i;
-	t_philo		*philo;
-	int			ret;
-	pthread_t	die_check;
+	int		i;
+	t_philo	*philo;
+	int		ret;
 
 	philo = params->philo;
 	params->start = get_time();
@@ -58,8 +36,6 @@ void	create_philosophers(t_params *params)
 		usleep(10);
 		i++;
 	}
-	pthread_create(&die_check, 0, (void *)death_check, params);
-	pthread_detach(die_check);
 }
 
 int	main(int ac, char **av)
@@ -71,8 +47,6 @@ int	main(int ac, char **av)
 	if (ac < 5 || ac > 6)
 		return (1);
 	params = param_init(ac, av);
-	if (!params)
-		return (1);
 	create_philosophers(params);
 	philo_num = params->philo_num;
 	while (--philo_num >= 0)
