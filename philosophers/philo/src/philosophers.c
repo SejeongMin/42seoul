@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:07:48 by semin             #+#    #+#             */
-/*   Updated: 2021/12/07 22:17:55 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/10 18:02:04 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,5 @@ int	main(int ac, char **av)
 		printf("All philosophers survived!\n");
 	destroy_mutex(params);
 	ft_free(&(params));
+	system("leaks philo");
 }

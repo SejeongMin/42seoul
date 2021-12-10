@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:49:23 by semin             #+#    #+#             */
-/*   Updated: 2021/12/02 16:03:37 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/10 18:01:52 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	ft_free(t_params **params)
 {
-	free((*params)->forks);
-	free((*params)->philo);
+	if ((*params)->forks != NULL)
+		free((*params)->forks);
+	if ((*params)->philo != NULL)
+		free((*params)->philo);
 	free(*params);
 	return (0);
 }
@@ -24,7 +26,6 @@ void	ft_error(t_params *params)
 {
 	printf("Error\n");
 	params->dead = 1;
-	usleep(1000);
 }
 
 int	ft_atoi(char *s, t_params *params)

@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 18:07:48 by semin             #+#    #+#             */
-/*   Updated: 2021/12/07 14:09:42 by semin            ###   ########.fr       */
+/*   Updated: 2021/12/10 17:55:45 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	main(int ac, char **av)
 	if (ac < 5 || ac > 6)
 		return (1);
 	params = param_init(ac, av);
+	if (!params)
+		return (1);
 	status = create_philosophers(params);
 	if (status == 0)
 		printf("All philosophers survived!\n");
