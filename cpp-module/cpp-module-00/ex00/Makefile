@@ -5,41 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/24 18:23:56 by semin             #+#    #+#              #
-#    Updated: 2021/12/07 14:10:13 by semin            ###   ########.fr        #
+#    Created: 2022/02/20 23:43:26 by semin             #+#    #+#              #
+#    Updated: 2022/02/21 00:47:43 by semin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-LIBS = -lpthread
-NAME = philo
-FILE = util\
-		philo_action\
-		philo_init\
-		philo_time\
-		philosophers\
+CC = clang++
+CFLAGS = -Wall -Wextra -Werror -std=c++98
+NAME = megaphone
+SRCS = megaphone.cpp
+OBJS = $(SRCS:.cpp=.o)
 
-SRC_DIR = ./src/
-SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILE)))
-OBJ_DIR = ./src/
-OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILE)))
-INC = -I./includes
 
-.c.o: $(SRC)
-	$(CC) $(INC) -c -o $@ $<
+all : $(NAME)
 
-all	: $(NAME)
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $@
 
-$(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(LIBS) -o $@ $^
+.cpp.o :
+	$(CC) $(CFLAGS) -c $< -o $(<:.cpp=.o)
 
-clean:
-	rm -f $(OBJ)
+clean :
+	rm -rf $(OBJS)
 
-fclean: clean
-	rm -f $(NAME)
+fclean : clean
+	rm -rf $(NAME)
 
-re: fclean all
+re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY : all clean fclean re
