@@ -6,14 +6,14 @@
 #    By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 04:20:53 by semin             #+#    #+#              #
-#    Updated: 2022/02/23 04:20:55 by semin            ###   ########.fr        #
+#    Updated: 2022/04/09 02:48:24 by semin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = megaphone
-SRCS = megaphone.cpp
+NAME = phonebook
+SRCS = main.cpp contact.cpp phonebook.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 
