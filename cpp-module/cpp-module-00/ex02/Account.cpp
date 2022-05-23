@@ -1,4 +1,15 @@
-// [19920104_091532] index:0;amount:42;created
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Account.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 22:38:23 by semin             #+#    #+#             */
+/*   Updated: 2022/05/23 22:38:37 by semin            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Account.hpp"
 #include <iostream>
 #include <time.h>
@@ -52,7 +63,6 @@ int	Account::getNbWithdrawals(void)
 
 void	Account::_displayTimestamp(void)
 {
-	// std::cout << "[19920104_091532] ";
 	char	buffer[19];
 	time_t	now;
 	struct tm	*timeinfo;
@@ -78,8 +88,6 @@ void	Account::makeDeposit(int deposit)
 
 bool	Account::makeWithdrawal(int withdrawal)
 {
-	//[19920104_091532] index:0;p_amount:47;withdrawal:refused
-	//[19920104_091532] index:3;p_amount:434;withdrawal:4;amount:430;nb_withdrawals:1
 	this->_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex;
 	std::cout << ";p_amount:" << this->_amount;
