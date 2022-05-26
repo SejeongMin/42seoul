@@ -6,11 +6,11 @@
 #    By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/20 23:43:26 by semin             #+#    #+#              #
-#    Updated: 2022/04/07 20:57:45 by semin            ###   ########.fr        #
+#    Updated: 2022/05/26 14:59:22 by semin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = clang++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = megaphone
 SRCS = megaphone.cpp
