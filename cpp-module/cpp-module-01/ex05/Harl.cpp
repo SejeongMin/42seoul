@@ -1,63 +1,42 @@
-/*
-private:
-	void	debug(void);
-	void	info(void);
-	void	warning(void);
-	void	error(void);
+#include "Harl.hpp"
 
-public:
-	void	complain(std::string level);
-*/
-
-#include "Karen.hpp"
-
-Karen::Karen()
+Harl::Harl()
 {}
 
-Karen::~Karen()
+Harl::~Harl()
 {
-	std::cout << "Karen destructed" << std::endl;
+	std::cout << "Harl destructed" << std::endl;
 }
 
-void	Karen::debug(void)
+void	Harl::debug(void)
 {
 	std::cout << "[ DEBUG ]\nI love to get extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I just love it!" << std::endl;
 }
 
-void	Karen::info(void)
+void	Harl::info(void)
 {
 	std::cout << "[ INFO ]\nI cannot believe adding extra bacon cost more money. You don't put enough! If you did I would not have to ask for it!" << std::endl;
 }
 
-void	Karen::warning(void)
+void	Harl::warning(void)
 {
 	std::cout << "[ WARNING ]\nI think I deserve to have some extra bacon for free. I’ve been coming here for years and you just started working here last month." << std::endl;
 }
 
-void	Karen::error(void)
+void	Harl::error(void)
 {
 	std::cout << "[ ERROR ]\nThis is unacceptable, I want to speak to the manager now." << std::endl;
 }
 
-void	Karen::complain(std::string level)
+void	Harl::complain(std::string level)
 {
+	void	(Harl::*harlFunc[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	Harl	*harl = new Harl();
 	std::string	levelinfo = "DIWE";
-	switch(levelinfo.find(level[0]))
-	{
-	case 0:
-		debug();
-		break;
-	case 1:
-		info();
-		break;
-	case 2:
-		warning();
-		break;
-	case 3:
-		error();
-		break;
-	default:
-		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-		break;
-	}
+	int	lv = levelinfo.find(level[0]);
+	if (lv >= 0 && lv <= 3)
+		(harl->*harlFunc[lv])();
+	else
+		std::cout << "WRONG INPUT : Enter [\"DEBUG\", \"INFO\", \"WARNING\", \"ERROR\"]" << std::endl;
+	delete harl;
 }
