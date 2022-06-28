@@ -1,21 +1,5 @@
 #include "Fixed.hpp"
 
-/*
-class Fixed{
-private:
-	int	value;
-	static const int	N = 8;
-public:
-	Fixed(const int i);
-	Fixed(const Fixed &f);
-	Fixed	&operator=(const Fixed &f);
-	Fixed	&operator<<(const Fixed &f);
-	~Fixed();
-	int	getRawBits( void ) const;
-	void	setRawBits( int const raw );
-	float	toFloat(void) const;
-	int		toInt(void) const;
-};*/
 Fixed::Fixed()
 {
 	this->value = 0;
@@ -24,13 +8,13 @@ Fixed::Fixed()
 
 Fixed::Fixed(const int i)
 {
-	this->value = i;
+	this->value = i << this->N;
 	std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float f)
 {
-	this->value = f;
+	this->value = roundf(f * (1 << this->N));
 	std::cout << "Float constructor called" << std::endl;
 }
 
@@ -51,13 +35,18 @@ Fixed& Fixed::operator=(const Fixed& f)
 	return *this;
 }
 
+std::ostream&	operator<<(std::ostream &os, const Fixed &f)
+{
+	os << f.toFloat();
+	return os;
+}
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
 
 int	Fixed::getRawBits(void) const {
-	std::cout << "getRawBits member function called" << std::endl;
 	return this->value;
 }
 
@@ -68,10 +57,10 @@ void	Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	return (float)this->value;
+	return((float)this->value / (1 << this->N));
 }
 
 int		Fixed::toInt(void) const
 {
-	return (int)this->value;
+	return (this->value >> this->N);
 }
