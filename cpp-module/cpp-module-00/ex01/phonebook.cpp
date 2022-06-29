@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:17:17 by semin             #+#    #+#             */
-/*   Updated: 2022/05/26 15:03:55 by semin            ###   ########.fr       */
+/*   Updated: 2022/06/29 14:48:53 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ void	PhoneBook::Search()
 	int	idx;
 	std::cout << "\nEnter the index of contact : ";
 	std::cin >> idx;
+	if (!std::cin)
+	{
+		std::cout << "Wrong index" << std::endl;
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
+		return ;
+	}
 	if (idx > count || idx <= 0)
 		std::cout << "Contact doesn't exist." << std::endl;
 	else
