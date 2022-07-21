@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 22:39:00 by semin             #+#    #+#             */
-/*   Updated: 2022/05/23 22:39:04 by semin            ###   ########.fr       */
+/*   Updated: 2022/07/21 22:01:58 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,17 @@ void	Contact::setIndex(int idx)
 
 void	Contact::setField()
 {
-	
-	std::cout << "Enter first name : ";
-	std::cin >> this->field[0];
-	std::cout << "Enter last name : ";
-	std::cin >> this->field[1];
-	std::cout << "Enter nickname : ";
-	std::cin >> this->field[2];
-	std::cout << "Enter phone number : ";
-	std::cin >> this->field[3];
-	std::cout << "Enter darkest secret : ";
-	std::cin >> this->field[4];
+	for (int i = 0; i < 5; i++){
+		std::cout << "Enter " << field_name[i] << " : ";
+		std::cin >> this->field[i];
+		if (std::cin.eof())
+			return;
+	}
 }
 
 void	Contact::PrintField(std::string value)
 {
-	std::string	str (value);
+	std::string	str(value);
 
 	if (value.length() > 10)
 	{

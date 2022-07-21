@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 02:48:13 by semin             #+#    #+#             */
-/*   Updated: 2022/04/09 03:06:14 by semin            ###   ########.fr       */
+/*   Updated: 2022/07/21 22:01:10 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	main(void)
 	for(;;){
 		std::cout << "Enter Command : ";
 		std::cin >> command;
-		
+		if (std::cin.eof())
+			break;
 		if (!command.compare("ADD")){
 			phonebook.Add(idx);
 			idx++;
@@ -37,5 +38,7 @@ int	main(void)
 		}
 		else
 			std::cout << "Wrong command" << std::endl;
+		if (std::cin.eof())
+			break;
 	}
 }

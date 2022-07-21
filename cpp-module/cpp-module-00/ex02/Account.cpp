@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 22:38:23 by semin             #+#    #+#             */
-/*   Updated: 2022/05/23 22:38:37 by semin            ###   ########.fr       */
+/*   Updated: 2022/07/21 21:53:03 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,20 @@ Account::Account(int initial_deposit)
 	_totalAmount += this->_amount;
 	this->_nbDeposits = 0;
 	this->_nbWithdrawals = 0;
-
 	this->_displayTimestamp();
-	std::cout << "index:" << this->_accountIndex;
-	std::cout << ";amount:" << this->_amount;
-	std::cout << ";created" << std::endl;
+	std::cout << "index:" << this->_accountIndex << ";amount:" << this->_amount
+			<< ";created" << std::endl;
 }
 
 Account::~Account(void)
 {
+	_totalAmount -= this->_amount;
+	_totalNbDeposits -= this->_nbDeposits;
+	_totalNbWithdrawals -= this->_nbWithdrawals;
+	_nbAccounts--;
 	this->_displayTimestamp();
-	std::cout << "index:" << this->_accountIndex;
-	std::cout << ";amount:" << this->_amount;
-	std::cout << ";closed" << std::endl;
+	std::cout << "index:" << this->_accountIndex << ";amount:"
+			<< this->_amount << ";closed" << std::endl;
 }
 
 int	Account::getNbAccounts(void)
@@ -92,7 +93,7 @@ bool	Account::makeWithdrawal(int withdrawal)
 	std::cout << "index:" << this->_accountIndex;
 	std::cout << ";p_amount:" << this->_amount;
 	if (withdrawal > this->_amount){
-		std::cout << ";withdrawal:" << "refused" << std::endl;
+		std::cout << ";withdrawal:refused" << std::endl;
 		return false;
 	}
 	std::cout << ";withdrawal:" << withdrawal;

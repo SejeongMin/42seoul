@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:17:17 by semin             #+#    #+#             */
-/*   Updated: 2022/06/29 14:48:53 by semin            ###   ########.fr       */
+/*   Updated: 2022/07/21 19:29:13 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ void	PhoneBook::Search()
 		std::cout << std::setw(45) << std::setfill('-') << "\n";
 		std::cout << std::setfill(' ');
 	}
-
 	int	idx;
 	std::cout << "\nEnter the index of contact : ";
 	std::cin >> idx;
+	if (std::cin.eof())
+		return;
 	if (!std::cin)
 	{
 		std::cout << "Wrong index" << std::endl;
@@ -60,7 +61,7 @@ void	PhoneBook::Search()
 		std::cout << "Contact doesn't exist." << std::endl;
 	else
 	{
-		std::cout << "\n";
+		std::cout << std::endl;
 		this->contact[idx - 1].PrintFields();
 		std::cout << std::endl;
 	}
