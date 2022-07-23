@@ -4,9 +4,7 @@ Harl::Harl()
 {}
 
 Harl::~Harl()
-{
-	std::cout << "Harl destructed" << std::endl;
-}
+{}
 
 void	Harl::debug(void)
 {

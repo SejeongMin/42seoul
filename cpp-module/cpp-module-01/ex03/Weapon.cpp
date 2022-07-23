@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 18:11:26 by semin             #+#    #+#             */
-/*   Updated: 2022/05/30 18:11:28 by semin            ###   ########.fr       */
+/*   Updated: 2022/07/23 18:20:30 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ Weapon::~Weapon()
 	std::cout << this->type << " destructed" << std::endl;
 }
 
-std::string	&Weapon::getType()
+const std::string	&Weapon::getType()
 {
-	std::string	&weaponREF = this->type;
+	const std::string	&weaponREF = this->type;
 	return weaponREF;
 }
 

@@ -6,13 +6,13 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 18:11:02 by semin             #+#    #+#             */
-/*   Updated: 2022/05/30 18:11:05 by semin            ###   ########.fr       */
+/*   Updated: 2022/07/23 18:23:06 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 
-HumanA::HumanA(std::string name, Weapon &weapon) : _weapon(weapon)	// 초기화리스트
+HumanA::HumanA(std::string name, Weapon &weapon) : _weapon(weapon)
 {
 	this->_name = name;
 }

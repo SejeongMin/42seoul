@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-// #include <string>
+#include <string>
 
 int	main(int ac, char **av)
 {
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 				break ;
 			filetxt.erase(idx, length);
 			filetxt.insert(idx, av[3]);
-			i += idx;
+			i = 0;
 		}
 		readfile.close();
 		std::ofstream	writefile((std::string)av[1] + ".replace");

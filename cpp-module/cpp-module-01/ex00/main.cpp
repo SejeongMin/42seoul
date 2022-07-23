@@ -6,7 +6,7 @@
 /*   By: semin <semin@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:45:51 by semin             #+#    #+#             */
-/*   Updated: 2022/05/28 15:45:53 by semin            ###   ########.fr       */
+/*   Updated: 2022/07/23 18:10:29 by semin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	mainfunc(void)
 int	main(void)
 {
 	mainfunc();
-	system("leaks BraiiiiiiinnnzzzZ");
+	// system("leaks BraiiiiiiinnnzzzZ");
 }
