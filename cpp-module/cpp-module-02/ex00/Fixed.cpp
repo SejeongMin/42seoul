@@ -12,6 +12,11 @@ Fixed::Fixed(const Fixed &f)
 	*this = f;
 }
 
+Fixed::~Fixed()
+{
+	std::cout << "Destructor called" << std::endl;
+}
+
 Fixed& Fixed::operator=(const Fixed& f)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
@@ -21,11 +26,6 @@ Fixed& Fixed::operator=(const Fixed& f)
 	// *this가 충분한 공간을 할당받았다고 가정?
 	this->value = f.getRawBits();
 	return *this;
-}
-
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
 }
 
 int	Fixed::getRawBits(void) const {
