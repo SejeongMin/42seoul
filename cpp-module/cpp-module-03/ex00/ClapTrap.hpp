@@ -11,15 +11,17 @@ public:
 	~ClapTrap();
 	ClapTrap&	operator=(const ClapTrap& c);
 
-	void attack(const std::string& target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
+	void	attack(const std::string& target);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
+
+	void	displayStatus();
 
 private:
 	std::string	_name;
-	int	_hit;
-	int	_energy;
-	int	_damage;
+	int	_hitPoints;
+	int	_energyPoints;
+	int	_attackDamage;
 
 };
 
