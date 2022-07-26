@@ -16,6 +16,7 @@ ClapTrap::ClapTrap(const ClapTrap& c)
 	*this = c;
 }
 
+
 ClapTrap::~ClapTrap()
 {
 	std::cout << "ClapTrap " << _name << " destructed." << std::endl;
@@ -77,7 +78,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 
 void	ClapTrap::displayStatus()
 {
-	std::cout << "\nClapTrap " << _name << " : hit point (" << _hitPoints
+	std::cout << "\n" << _name << " : hit point (" << _hitPoints
 			<< ") | energy point (" << _energyPoints
 			<< ") | attack damage (" << _attackDamage << ")\n" << std::endl;
 }
