@@ -6,7 +6,7 @@ ScavTrap::ScavTrap()
 	_energyPoints = 50;
 	_attackDamage = 20;
 	_gatekeeperMode = false;
-	std::cout << "ScavTrap default constructor called.\n" << std::endl;
+	std::cout << "ScavTrap default constructor called." << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
@@ -15,18 +15,18 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	_energyPoints = 50;
 	_attackDamage = 20;
 	_gatekeeperMode = false;
-	std::cout << "ScavTrap " << _name << " constructed.\n" << std::endl;
+	std::cout << "ScavTrap " << _name << " constructed." << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& s) : ClapTrap(s._name)
 {
 	*this = s;
-	std::cout << "ScavTrap " << _name << " constructed.(copy constructor)\n" << std::endl;
+	std::cout << "ScavTrap " << _name << " constructed.(copy constructor)" << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap " << _name << " destructed.\n" << std::endl;
+	std::cout << "ScavTrap " << _name << " destructed." << std::endl;
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& s)
@@ -56,5 +56,5 @@ void	ScavTrap::attack(const std::string& target)
 void	ScavTrap::guardGate()
 {
 	_gatekeeperMode = true;
-	std::cout << "ScavTrap " << _name << " is now in Gate keeper mode.\n" << std::endl;
+	std::cout << "ScavTrap " << _name << " is now in Gate keeper mode." << std::endl;
 }

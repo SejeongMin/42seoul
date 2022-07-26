@@ -1,4 +1,4 @@
-CC = c++
+CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = a.out
 SRCS = Fixed.cpp \
@@ -9,10 +9,10 @@ OBJS = $(SRCS:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(CXXFLAGS) $(OBJS) -o $@
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
 
 .cpp.o :
-	$(CC) $(CXXFLAGS) -c $< -o $(<:.cpp=.o)
+	$(CXX) $(CXXFLAGS) -c $< -o $(<:.cpp=.o)
 
 clean :
 	rm -rf $(OBJS)
