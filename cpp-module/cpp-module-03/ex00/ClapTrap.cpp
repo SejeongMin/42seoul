@@ -23,7 +23,7 @@ ClapTrap::~ClapTrap()
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &c)
 {
-	_name = c._name; // 음 ...........?
+	_name = c._name;
 	_hitPoints = c._hitPoints;
 	_energyPoints = c._energyPoints;
 	_attackDamage = c._attackDamage;

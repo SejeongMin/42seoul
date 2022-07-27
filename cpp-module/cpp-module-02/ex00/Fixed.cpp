@@ -20,10 +20,8 @@ Fixed::~Fixed()
 Fixed& Fixed::operator=(const Fixed& f)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	// Guard self assignment
 	if (this == &f)
 		return *this;
-	// *this가 충분한 공간을 할당받았다고 가정?
 	this->value = f.getRawBits();
 	return *this;
 }
