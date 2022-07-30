@@ -2,17 +2,17 @@
 
 ClapTrap::ClapTrap() : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "ClapTrap default constructor called.\n" << std::endl;
+	std::cout << "ClapTrap default constructor called." << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "ClapTrap " << _name << " constructed.\n" << std::endl;
+	std::cout << "ClapTrap " << _name << " constructed." << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& c)
 {
-	std::cout << "ClapTrap " << _name << " constructed.(copy constructor)\n" << std::endl;
+	std::cout << "ClapTrap " << _name << " constructed.(copy constructor)" << std::endl;
 	*this = c;
 }
 
@@ -23,7 +23,7 @@ ClapTrap::~ClapTrap()
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &c)
 {
-	_name = c._name; // 음 ...........?
+	_name = c._name;
 	_hitPoints = c._hitPoints;
 	_energyPoints = c._energyPoints;
 	_attackDamage = c._attackDamage;
@@ -34,7 +34,7 @@ void	ClapTrap::attack(const std::string& target)
 {
 	if (!_energyPoints || !_hitPoints)
 	{
-		std::cout << "ClapTrap " << _name << " is already dead.\n" << std::endl;
+		std::cout << "ClapTrap " << _name << " is already dead." << std::endl;
 		return ;
 	}
 	_energyPoints--;
@@ -43,14 +43,14 @@ void	ClapTrap::attack(const std::string& target)
 			<< " points of damage!" << std::endl;
 	displayStatus();
 	if (!_energyPoints)
-		std::cout << "ClapTrap " << _name << " is dead. (no energy points left)\n" << std::endl;
+		std::cout << "ClapTrap " << _name << " is dead. (no energy points left)" << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (!_energyPoints || !_hitPoints) // hit=0이면?
 	{
-		std::cout << "ClapTrap " << _name << " is already dead.\n" << std::endl;
+		std::cout << "ClapTrap " << _name << " is already dead." << std::endl;
 		return ;
 	}
 	_hitPoints += amount;
@@ -59,14 +59,14 @@ void	ClapTrap::beRepaired(unsigned int amount)
 			<< amount << " points!" << std::endl;
 	displayStatus();
 	if (!_energyPoints)
-		std::cout << "ClapTrap " << _name << " is dead. (no energy points left)\n" << std::endl;
+		std::cout << "ClapTrap " << _name << " is dead. (no energy points left)" << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (!_energyPoints || !_hitPoints)
 	{
-		std::cout << "ClapTrap " << _name << " is already dead.\n" << std::endl;
+		std::cout << "ClapTrap " << _name << " is already dead." << std::endl;
 		return ;
 	}
 	if (_hitPoints <= amount)
@@ -86,5 +86,5 @@ void	ClapTrap::displayStatus()
 {
 	std::cout << _name << " : hit point (" << _hitPoints
 			<< ") | energy point (" << _energyPoints
-			<< ") | attack damage (" << _attackDamage << ")\n" << std::endl;
+			<< ") | attack damage (" << _attackDamage << ")" << std::endl;
 }
