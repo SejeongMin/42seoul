@@ -14,6 +14,13 @@ Cat::Cat(const Cat& c)
     *this = c;
 }
 
+Cat::Cat(const Brain& b)
+{
+    std::cout << "Cat constructor called." << std::endl;
+    type = "Cat";
+    *brain = b;
+}
+
 Cat::~Cat()
 {
     delete brain;

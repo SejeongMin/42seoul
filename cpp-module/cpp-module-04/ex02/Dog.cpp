@@ -14,6 +14,13 @@ Dog::Dog(const Dog& d)
     *this = d;
 }
 
+Dog::Dog(const Brain& b)
+{
+    std::cout << "Dog constructor called." << std::endl;
+    type = "Dog";
+    *brain = b;
+}
+
 Dog::~Dog()
 {
     delete brain;

@@ -53,5 +53,5 @@ int maintest()
 int main(void)
 {
 	maintest();
-	// system("leaks animal");
+	system("leaks animal");
 }

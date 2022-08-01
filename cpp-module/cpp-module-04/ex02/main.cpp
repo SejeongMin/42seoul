@@ -5,6 +5,7 @@
 int maintest()
 {
 	{
+		// const Animal* a = new Animal();
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
 		delete j;//should not create a leak
@@ -16,5 +17,5 @@ int maintest()
 int main(void)
 {
 	maintest();
-	// system("leaks brain");
+	// system("leaks abstract");
 }
