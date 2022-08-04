@@ -7,7 +7,16 @@
 int main() {
     try
     {
-        Bureaucrat b("b", 0);
+        Bureaucrat b("b", 1);
+        std::cout << "ShrubberyCreationForm Test!!!" << std::endl;
+        ShrubberyCreationForm s("home");
+        b.executeForm(s);
+        std::cout << std::endl;
+        b.signForm(s);
+        b.executeForm(s);
+        std::cout << std::endl;
+        std::cout << s << std::endl << std::endl;;
+
     }
     catch(std::exception & e)
     {

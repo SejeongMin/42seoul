@@ -34,9 +34,22 @@ void    ShrubberyCreationForm::execute(const Bureaucrat& executor) const
         throw Form::GradeTooLowException("EXCEPTION: The executor's grade is too low to execute this form.");
     std::string filename = getTarget() + "_shrubbery";
     std::ofstream file;
-    file.open(filename.c_str(), 'w');
+    file.open(filename.c_str());
     if (file.is_open()){
-        file << "tree";
+        file << "            @\n"
+                "      @ @ @  @ @ @\n"
+                "    @  @\\/@ @ /__@\n"
+                "    @@@ @\\ / @/  @ @\n"
+                "   @\\  \\/@| @ | @\n"
+                "  @__\\@ \\ |/ \\| / @\n"
+                "     __\\|@|  ||/__/@\n"
+                "    /  \\ \\\\  / /__\n"
+                "   @    \\  \\/ /   @\n"
+                "         |\\\" '|\n"
+                "         |\\\"  |\n"
+                "         |\\\"  |\n"
+                "        ~|\\\"  |~\n"
+                "    ~~~~       ~~~~";
         file.close();
     }
 }
