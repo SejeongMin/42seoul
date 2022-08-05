@@ -3,17 +3,25 @@
 
 int main(void)
 {
-    try
     {
         Form f1("form1", 100, 100);
-        Bureaucrat b1("b1", 0);
+        std::cout << std::endl;
+        Bureaucrat b1("b1", 1);
+        std::cout << std::endl;
         Bureaucrat b2("b2", 110);
-    
+        std::cout << std::endl;
         b1.signForm(f1);
+        std::cout << std::endl;
         b2.signForm(f1);
+        std::cout << std::endl;
     }
-    catch(std::exception & e)
+    std::cout << "\n==================================\n" << std::endl;
     {
-        std::cout << e.what() << std::endl;
+        try{
+            Form f2("form2", 0, 1);
+        }
+        catch(std::exception & e){
+            std::cerr << e.what() << std::endl;
+        }
     }
 }

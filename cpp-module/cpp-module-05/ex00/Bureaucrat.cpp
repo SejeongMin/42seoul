@@ -47,17 +47,18 @@ void    Bureaucrat::setGrade(int grade)
         throw GradeTooLowException("EXCEPTION: Grade too low");
     else if (grade < 1)
         throw GradeTooHighException("EXCEPTION: Grade too high");
+    _grade = grade;
 }
 
 
 void    Bureaucrat::upGrade()
 {
-    setGrade(_grade + 1);
+    setGrade(_grade - 1);
 }
 
 void    Bureaucrat::downGrade()
 {
-    setGrade(_grade - 1);
+    setGrade(_grade + 1);
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
