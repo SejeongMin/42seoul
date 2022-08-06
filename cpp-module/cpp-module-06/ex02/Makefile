@@ -1,8 +1,8 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = convert
+NAME = serialization
 SRCS = main.cpp \
-		Conversion.cpp
+		Base.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

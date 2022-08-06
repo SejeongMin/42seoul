@@ -8,7 +8,7 @@ class Conversion {
 
 public:
 	Conversion();
-	Conversion(std::string& value);
+	Conversion(const std::string& value);
 	Conversion(const Conversion& c);
 	~Conversion();
 	Conversion& operator=(const Conversion& c);
@@ -28,6 +28,8 @@ public:
 		virtual const char* what() const throw();
 	};
 
+	void	checkType();
+
 	void	toChar();
 	void	toInt();
 	void	toFloat();
@@ -35,6 +37,7 @@ public:
 
 private:
 	std::string _value;
+	int _type;
 
 };
 
