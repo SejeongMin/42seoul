@@ -31,34 +31,30 @@ const char*    Intern::NonValidFormNameException::what() const throw()
     return "form name is not valid.";
 }
 
+ShrubberyCreationForm* newShrubbery(const std::string& target)
+{
+    return new ShrubberyCreationForm(target);
+}
+
 Form*    Intern::makeForm(const std::string& formName, const std::string& target)
 {
     std::string formNames[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
     for (int i = 0; i < 3; i++){
         if (!formNames[i].compare(formName))
         {
+            std::cout << "Intern creates " << formNames[i] << " form." << std::endl;
             switch (i)
             {
                 case 0:
-                {
-                    std::cout << "Intern creates ShrubberyCreationForm" << std::endl;
                     return new ShrubberyCreationForm(target);
-                }
                 case 1:
-                {
-                    std::cout << "Intern creates RobotomyRequestForm" << std::endl;
                     return new RobotomyRequestForm(target);
-                }
                 case 2:
-                {
-                    std::cout << "Intern creates PresidentialPardonForm" << std::endl;
                     return new PresidentialPardonForm(target);
-                }
                 default:
                     break;
             }
         }
     }
     throw NonValidFormNameException();
-
 }
