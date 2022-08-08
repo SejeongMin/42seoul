@@ -11,11 +11,20 @@ Base * generate(void)
 	Base* base;
 	srand((unsigned int)time(NULL));
 	if (rand() % 3 == 0)
+	{
+		std::cout << "A is generated." << std::endl;
 		base = dynamic_cast<Base*>(new A);
+	}
 	else if (rand() % 3 == 1)
+	{
+		std::cout << "B is generated." << std::endl;
 		base = dynamic_cast<Base*>(new B);
+	}
 	else
+	{
+		std::cout << "C is generated." << std::endl;
 		base = dynamic_cast<Base*>(new C);
+	}
 	return base;
 }
 
@@ -56,8 +65,8 @@ int main(void)
 {
 	Base* b = generate();
 
+	std::cout << "\nIdentified : ";
 	identify(b);
-	identify(*b);
 
 	delete b;
 

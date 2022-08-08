@@ -4,16 +4,23 @@
 int main(void)
 {
 	Data data;
-	data._data = 42;
-	Data *data2;
+	data._data = 1;
+	data._str = std::string("data string");
 
-	data2 = deserialize(serialize(&data));
+	uintptr_t	dataPtr = serialize(&data);
 
-	std::cout << &data << std::endl;
-	std::cout << data2 << std::endl;
+	std::cout << "serialized data(dec): " << dataPtr << std::endl;
+	std::cout << std::endl;
 
-	std::cout << data._data << std::endl;
-	std::cout << data2->_data << std::endl;
+	Data* data2  = deserialize(dataPtr);
+
+	std::cout << "_data: " << data2->_data << std::endl;
+	std::cout << "_str: " << data2->_str << std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << "original Data :		" << &data << std::endl;
+	std::cout << "deserialized Data :	" << data2 << std::endl;
 
 	return (0);
 }

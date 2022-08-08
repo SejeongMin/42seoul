@@ -6,6 +6,7 @@
 
 struct Data{
 	int _data;
+	std::string _str;
 };
 
 uintptr_t serialize(Data* ptr);

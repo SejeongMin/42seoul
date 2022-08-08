@@ -23,11 +23,6 @@ public:
 		virtual const char* what() const throw();
 	};
 
-	class OverflowException : public std::exception{
-	public:
-		virtual const char* what() const throw();
-	};
-
 	void	checkType();
 
 	void	toChar();
