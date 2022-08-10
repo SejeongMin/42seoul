@@ -18,14 +18,17 @@ int main(void)
 
 		iter(arr, 3, func);
 
+		std::cout << std::endl;
+
 		const int arr2[] = {4,5,6};
 
-		iter(arr2, 3, func2);
+		iter(arr2, 3, func2<const int>);
 	}
 	std::cout << "\n==============================\n" << std::endl;
 	{
-		std::string arr[] = {"1", "2", "3"};
+		std::string arr[] = {"str1", "str2", "str3"};
 
 		iter(arr, 3, func2);
 	}
+	return (0);
 }
