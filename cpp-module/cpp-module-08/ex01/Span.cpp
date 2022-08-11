@@ -68,18 +68,19 @@ int Span::shortestSpan()
 	if (_vector.size() < 2)
 		throw NoSpanException();
 	std::vector<int> v(_vector);
+	std::vector<int> dv(_vector.capacity());
 	std::sort(v.begin(), v.end());
-	std::adjacent_difference(v.begin(), v.end(), v.begin());
-	std::sort(v.begin() + 1, v.end());
-	return v.at(1);
+	std::adjacent_difference(v.begin(), v.end(), dv.begin());
+	std::sort(dv.begin() + 1, dv.end());
+	return dv.at(1);
 }
 
 const char* Span::NoSpaceException::what() const throw()
 {
-	return "No capacity";
+	return "EXCEPTION : No capacity";
 }
 
 const char* Span::NoSpanException::what() const throw()
 {
-	return "Not enough numbers";
+	return "EXCEPTION : Not enough numbers";
 }

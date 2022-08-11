@@ -11,7 +11,7 @@ typename T::iterator	easyfind(T& c, int value)
 {
 	typename T::iterator iter = std::find(c.begin(), c.end(), value);
 	if (iter == c.end())
-		throw std::runtime_error("not found");
+		throw std::runtime_error("EXCEPTION: not found");
 	return iter;
 }
 
