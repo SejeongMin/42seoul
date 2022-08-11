@@ -1,6 +1,6 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = easyfind
+NAME = mutantstack
 SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)

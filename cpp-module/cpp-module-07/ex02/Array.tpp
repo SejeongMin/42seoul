@@ -1,5 +1,5 @@
 template <typename T>
-Array<T>::Array() : _array(new T[0]), _size(0)
+Array<T>::Array() : _size(0)
 {
 	_array = new T[0];
 }
@@ -20,6 +20,8 @@ Array<T>::Array(const Array& a)
 template <typename T>
 Array<T>& Array<T>::operator=(const Array& a)
 {
+	if (this == &a)
+		return *this;
 	_size = a._size;
 	if (_array)
 		delete[] _array;

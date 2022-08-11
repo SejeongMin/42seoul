@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Array.hpp"
 
-int main(void)
+int maintest(void)
 {
     Array<int> a(5);
     std::cout << "size of a = " << a.size() << std::endl;
@@ -35,4 +35,11 @@ int main(void)
     } catch(std::exception & e){
         std::cout << e.what() << std::endl;
     }
+    return 0;
+}
+
+int main(void)
+{
+    maintest();
+    system("leaks array");
 }

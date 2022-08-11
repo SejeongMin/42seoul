@@ -4,11 +4,15 @@
 # include <algorithm>
 # include <iostream>
 # include <vector>
+# include <stdexcept>
 
 template <typename T>
-int	easyfind(T& container, int value)
+typename T::iterator	easyfind(T& c, int value)
 {
-	std::vector<int>::iterator iter = begin(conatiner);
+	typename T::iterator iter = std::find(c.begin(), c.end(), value);
+	if (iter == c.end())
+		throw std::runtime_error("not found");
+	return iter;
 }
 
 #endif
