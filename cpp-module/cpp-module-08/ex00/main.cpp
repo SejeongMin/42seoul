@@ -1,41 +1,35 @@
 #include "easyfind.hpp"
 
-#include <algorithm>
-#include <deque>
 #include <iostream>
 #include <list>
-#include <stdexcept>
 #include <string>
 #include <vector>
 
 int main(void) {
-	std::deque<int> d;
 	std::list<int> l;
 	std::vector<int> v;
 
 	for (int i = 0 ; i < 10 ; ++i) {
-		d.push_back(i);
 		l.push_back(i);
 		v.push_back(i);
 	}
-	try {
-		std::deque<int>::iterator iter = easyfind(d, 3);
-		std::cout << "Value " << 3 << " found on Index "
-			<< std::distance(std::begin(d), iter) << std::endl;
-	} catch (std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
+	std::cout << "============ List ============\n" << std::endl;
 	try {
 		std::list<int>::iterator iter = easyfind(l, 6);
-		std::cout << "Value " << 6 << " found on Index "
-			<< std::distance(std::begin(l), iter) << std::endl;
+		std::cout << "found " << 6 << "(index : "
+			<< std::distance(std::begin(l), iter) << ")" << std::endl;
 	} catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
+	std::cout << "\n============ Vector ============\n" << std::endl;
 	try {
-		std::vector<int>::iterator iter = easyfind(v, 10);
-		std::cout << "Value " << 10 << " found on Index "
-			<< std::distance(std::begin(v), iter) << std::endl;
+		std::vector<int>::iterator iter = easyfind(v, 1);
+		std::cout << "found " << 1 << "(index : "
+			<< std::distance(std::begin(v), iter) << ")" << std::endl;
+		std::cout << std::endl;
+		iter = easyfind(v, 10);
+		std::cout << "found " << 10 << "(index : "
+			<< std::distance(std::begin(v), iter) << ")" << std::endl;
 	} catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}

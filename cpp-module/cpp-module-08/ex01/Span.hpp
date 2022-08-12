@@ -16,6 +16,18 @@ public:
 
 	void	addNumber(int value);
 
+	template <typename T>
+	void	addNumber(T begin, T end)
+	{
+		if (std::distance(begin, end) < static_cast<long>(getCapacity() - getSize()))
+			throw NoSpaceException();
+		while (begin != end)
+		{
+			_vector.push_back(*begin);
+			begin++;
+		}
+	}
+
 	int shortestSpan();
 	int longestSpan();
 
